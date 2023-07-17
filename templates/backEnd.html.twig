@@ -1,0 +1,87 @@
+<form id="product-form">
+    <label for="product-name">Name:</label><br>
+    <input type="text" id="product-name" name="product-name"><br>
+    <label for="product-price">Price:</label><br>
+    <input type="number" id="product-price" name="product-price"><br>
+    <label for="product-description">Description:</label><br>
+    <textarea id="product-description" name="product-description"></textarea><br>
+    <input type="submit" value="Add Product">
+</form>
+
+<table id="products-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Products will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+
+document.getElementById('product-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var name = document.getElementById('product-name').value;
+    var price = document.getElementById('product-price').value;
+    var description = document.getElementById('product-description').value;
+
+    fetch('/api/products', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            name: name,
+            price: price,
+            description: description
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert('Error: ' + data.error);
+        } else {
+            alert('Product added successfully');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+    loadProducts();
+});
+
+function loadProducts() {
+    fetch('/api/products', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        var tableBody = document.getElementById('products-table').getElementsByTagName('tbody')[0];
+
+        data.forEach(product => {
+            var newRow = tableBody.insertRow();
+
+            var nameCell = newRow.insertCell(0);
+            var priceCell = newRow.insertCell(1);
+            var descriptionCell = newRow.insertCell(2);
+
+            nameCell.textContent = product.name;
+            priceCell.textContent = product.price;
+            descriptionCell.textContent = product.description;
+        });
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+window.onload = loadProducts;
+</script>

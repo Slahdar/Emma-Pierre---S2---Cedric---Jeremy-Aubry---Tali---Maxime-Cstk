@@ -55,6 +55,10 @@ class Router
    */
   public function execute(string $requestUri, string $httpMethod)
   {
+    if (str_starts_with($requestUri, '/api')) {
+      header('Content-Type: application/json');
+  }
+  
     $route = $this->getRoute($requestUri, $httpMethod);
 
     if ($route === null) {

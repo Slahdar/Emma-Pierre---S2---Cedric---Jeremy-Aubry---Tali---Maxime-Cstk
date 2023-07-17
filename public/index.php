@@ -4,6 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Initialisation de certaines choses
 use App\Controller\ContactController;
 use App\Controller\IndexController;
+use App\Controller\ApiController;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
@@ -28,7 +29,7 @@ $dsn = "mysql:dbname=$dbname;host=$host:$port;charset=$charset";
 
 try {
   $pdo = new PDO($dsn, $user, $password);
-  var_dump($pdo);
+  // var_dump($pdo);
 } catch (PDOException $ex) {
   echo "Erreur lors de la connexion à la base de données : " . $ex->getMessage();
   exit;
@@ -44,8 +45,8 @@ $twig = new Environment($loader, [
 $serviceContainer = new Container();
 $serviceContainer
   ->set(Environment::class, $twig)
-  ->set(PDO::class, $pdo);
-
+  ->set(PDO::class, $pdo)
+  ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer);
 $router->registerRoutes();
