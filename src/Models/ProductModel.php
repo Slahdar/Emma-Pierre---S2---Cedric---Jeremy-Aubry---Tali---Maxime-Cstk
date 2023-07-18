@@ -13,7 +13,7 @@ class ProductModel
 
     public function getAllProducts()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products");
+        $stmt = $this->pdo->prepare("SELECT * FROM product");
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -28,7 +28,7 @@ class ProductModel
 
     public function getProductById(int $id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM product WHERE id = ?");
         $stmt->execute([$id]);
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);

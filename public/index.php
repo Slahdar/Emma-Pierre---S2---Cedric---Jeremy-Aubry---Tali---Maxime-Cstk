@@ -54,7 +54,9 @@ $serviceContainer = new Container();
 $serviceContainer
   ->set(Environment::class, $twig)
   ->set(PDO::class, $pdo)
-  ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo));
+  ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo))
+  ->set(App\Models\CategoryModel::class, new App\Models\CategoryModel($pdo))
+  ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer);
 $router->registerRoutes();

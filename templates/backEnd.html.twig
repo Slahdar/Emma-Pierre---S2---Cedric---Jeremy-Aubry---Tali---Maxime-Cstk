@@ -28,13 +28,13 @@
         <textarea id="description" name="description"></textarea>
         <select id="category-select">
             {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
+            <option value="{{ category.category_id }}">{{ category.category_name }}</option>
             {% endfor %}
         </select>
 
         <select id="type-select">
             {% for type in types %}
-            <option value="{{ type.id }}">{{ type.name }}</option>
+            <option value="{{ type.gem_id }}">{{ type.gem_name }}</option>
             {% endfor %}
         </select>
         <input type="file" id="image" name="image">
