@@ -73,4 +73,21 @@ class ApiController extends AbstractController
         $products = $this->productModel->getAllProducts();
         return json_encode($products);
     }
+
+    #[Route("/api/products/{id}", name: "api_product_get",  httpMethod: "POST")]
+    public function getProduct(int $id): string
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        $product = $this->productModel->editProductById($id);
+        if ($product) {
+            return json_encode($product);
+        } else {
+            http_response_code(404);  // Not Found
+            return json_encode(['error' => 'Product not found']);
+        }
+    }
 }

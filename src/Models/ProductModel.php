@@ -28,7 +28,15 @@ class ProductModel
 
     public function getProductById(int $id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM product WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+        $stmt->execute([$id]);
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function editProductById(int $id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM product WHERE product_id = ?");
         $stmt->execute([$id]);
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);

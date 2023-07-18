@@ -10,6 +10,7 @@ use App\Controller\backEndController;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;
+use App\Routing\ArgumentResolver;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -19,7 +20,7 @@ $dotenv->loadEnv(__DIR__ . '/../.env');
 
 if (
   php_sapi_name() !== 'cli' && // Environnement d'exécution != console
-  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif|svg|webp|woff2)$/', $_SERVER['REQUEST_URI'])
+  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif)$/', $_SERVER['REQUEST_URI'])
 ) {
   return false;
 }
@@ -59,7 +60,7 @@ $serviceContainer
   ->set(App\Models\CategoryModel::class, new App\Models\CategoryModel($pdo))
   ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo));
 // Appeler un routeur pour lui transférer la requête
-$router = new Router($serviceContainer);
+$router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();
 
 try {
