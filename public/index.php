@@ -13,6 +13,8 @@ use App\Routing\Router;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Models\LoginModel;
+
 
 $dotenv = new Dotenv();
 $dotenv->loadEnv(__DIR__ . '/../.env');
@@ -57,7 +59,8 @@ $serviceContainer
   ->set(PDO::class, $pdo)
   ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo))
   ->set(App\Models\CategoryModel::class, new App\Models\CategoryModel($pdo))
-  ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo));
+  ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo))
+  ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer);
 $router->registerRoutes();
