@@ -1,6 +1,6 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById('new-product-form').addEventListener('submit', function(e) {
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('new-product-form').addEventListener('submit', function (e) {
         e.preventDefault();  // Prevent the form from submitting normally
 
         var name = document.getElementById('name').value;
@@ -13,51 +13,50 @@ document.addEventListener("DOMContentLoaded", function() {
             description: description
         };
 
-        fetch('/api/products/POST', {
-            method: 'POST', 
+        fetch('/api/products', {
+            method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('Product created successfully!');
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            alert('An error occurred.');
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                alert('Product created successfully!');
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.log('error')
+            });
     });
 });
 
 function loadProducts() {
-    fetch('/api/products/GET', {
+    fetch('/api/products', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        var tableBody = document.getElementById('products-table').getElementsByTagName('tbody')[0];
+        .then(response => response.json())
+        .then(data => {
+            var tableBody = document.getElementById('products-table').getElementsByTagName('tbody')[0];
 
-        data.forEach(product => {
-            var newRow = tableBody.insertRow();
+            data.forEach(product => {
+                var newRow = tableBody.insertRow();
 
-            var nameCell = newRow.insertCell(0);
-            var priceCell = newRow.insertCell(1);
-            var descriptionCell = newRow.insertCell(2);
+                var nameCell = newRow.insertCell(0);
+                var priceCell = newRow.insertCell(1);
+                var descriptionCell = newRow.insertCell(2);
 
-            nameCell.textContent = product.name;
-            priceCell.textContent = product.price;
-            descriptionCell.textContent = product.description;
+                nameCell.textContent = product.name;
+                priceCell.textContent = product.price;
+                descriptionCell.textContent = product.description;
+            });
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
 }
 
 window.onload = loadProducts;

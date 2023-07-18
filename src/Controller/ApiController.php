@@ -13,21 +13,21 @@ class ApiController extends AbstractController
     {
         $this->productModel = $productModel;
     }
-    #[Route("/api/products/POST", name: "api_products_post")]
+    #[Route("/api/products", name: "api_products_post", httpMethod: "POST")]
     public function postProduct(): string
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);  // Method Not Allowed
             return json_encode(['error' => 'Invalid HTTP method']);
         }
-    
+
         // Assuming that your product data is coming from the request body
         $productData = json_decode(file_get_contents('php://input'), true);
         if (!$productData) {
             http_response_code(400);  // Bad Request
             return json_encode(['error' => 'Invalid or missing product data']);
         }
-    
+
         try {
             $result = $this->productModel->createProduct($productData);
             if ($result) {
@@ -42,8 +42,8 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'An error occurred while creating the product']);
         }
     }
-    
-    #[Route("/api/products/GET", name: "api_products_get")]
+
+    #[Route("/api/products", name: "api_products_get")]
     public function getProducts(): string
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -54,9 +54,4 @@ class ApiController extends AbstractController
         $products = $this->productModel->getAllProducts();
         return json_encode($products);
     }
-
-  
-   
-
- 
 }
