@@ -33,4 +33,22 @@ class ProductModel
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    public function getCollections(): array
+    {
+        $statement = $this->pdo->query("SELECT * FROM collection");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getGemTypes(): array
+    {
+        $statement = $this->pdo->query("SELECT * FROM gem_type");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getCategories(): array
+    {
+        $statement = $this->pdo->query("SELECT * FROM category");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

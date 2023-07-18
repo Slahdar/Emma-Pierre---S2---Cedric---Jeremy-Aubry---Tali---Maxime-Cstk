@@ -3,6 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // Initialisation de certaines choses
 use App\Controller\ContactController;
+use App\Controller\ProductListController;
 use App\Controller\IndexController;
 use App\Controller\ApiController;
 use App\DependencyInjection\Container;
