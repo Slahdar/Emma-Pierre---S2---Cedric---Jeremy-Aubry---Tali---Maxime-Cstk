@@ -7,7 +7,6 @@ secondDiv.style.display = "none";
 // Add a mouseenter event listener to the first div
 firstDiv.addEventListener("mouseenter", function () {
   // Show the second div
-  console.log("hovered");
   secondDiv.style.display = "flex";
 });
 
