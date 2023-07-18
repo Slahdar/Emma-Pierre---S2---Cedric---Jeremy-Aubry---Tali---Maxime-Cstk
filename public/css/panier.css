@@ -1,0 +1,350 @@
+.d-flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.w-100 {
+  width: 100%;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+.cart-flex, .sous-total{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.inner-cart-flex {
+  display: flex;
+}
+
+.inner-cart-flex-row {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15px;
+  width: auto;
+}
+
+.card-produit {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+.card-produit img {
+  width: 240px;
+  height: 240px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.card-produit-prix {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.inner-cart-flex img {
+  width: 253px;
+  height: 263px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  object-position: center;
+}
+
+.inner-cart-flex.recap img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  object-position: center;
+}
+
+.carousel {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .inner-cart-flex img {
+    width: 160px;
+    height: 130px;
+  }
+  .carousel{
+    flex-direction: column;
+    align-items: center;
+  }
+  .rassurance{
+    justify-content: center;
+  }
+}
+
+
+.quantite-prix{
+    display: flex;
+    align-items: center;
+    color: var(--bleu2);
+    width: 30%;
+  justify-content: space-between;
+}
+
+hr.corail {
+  background-color: var(--corail1);
+  border-color: transparent;
+  width: 100%;
+  opacity: 1;
+}
+label {
+  display: flex !important;
+  align-items: center;
+  gap: 20px;
+}
+
+input[type="checkbox"] {
+  width: 30px !important;
+  height: 30px;
+  border-color: white;
+  background-color: #f4f4f4;
+}
+.rassurance{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+}
+
+.code-promo {
+  border: navajowhite;
+  border-bottom: 1px solid var(--bleu2);
+  background: transparent;
+  outline: none;
+  caret-color: var(--bleu2);
+  font-size: 25px;
+  font-family: "Urbanist";
+  width: calc(50% - 20px);
+  color: var(--bleu2);
+}
+
+.total-wrap {
+  background-color: var(--Gris-Blanc);
+  max-width: 500px;
+  width: 33%;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+.panier-wrap {
+  width: 66%;
+}
+.panier-section {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.logoCB {
+  position: relative;
+}
+.logoCB::after {
+  position: absolute;
+  content: "";
+  background: url(../icon/Mastercard-logo\ 1.svg);
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 50px;
+  bottom: -8px;
+  right: 0%;
+}
+.logoCB::before {
+  position: absolute;
+  content: "";
+  background: url(../icon/Visa-Logo\ 1.svg);
+  background-repeat: no-repeat;
+  width: 90px;
+  height: 50px;
+  bottom: -5px;
+  right: 13%;
+  z-index: 88;
+}
+
+.qte {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+    div#page-container > section.panier-section{
+        flex-direction: column;
+        margin-top: 80px !important;
+    }
+    .mob-d-none{
+        display: none;
+    }
+
+  .panier-wrap {
+    width: 100%;
+  }
+  .mob-13px {
+    font-size: 13px;
+  }
+
+  .total-wrap {
+    width: auto;
+    gap: 10px;
+    padding: 20px 15px;
+  }
+
+  .logoCB::before,
+  .logoCB::after {
+    display: none;
+  }
+  .cta {
+    margin: 0;
+    font-size: 15px !important;
+  }
+  .cta-big {
+    padding: inherit;
+  }
+  h1,
+  .h1 {
+    font-size: 22px;
+  }
+  h2,
+  h2 {
+    font-size: 20px;
+  }
+  h3,
+  .h3 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .mob-column,
+  .row-col {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .pc-d-none {
+    display: none !important;
+  }
+}
+
+.row-col {
+  display: flex;
+}
+
+label input[name="commande"] {
+  transform: scale(1.5);
+  accent-color: var(--corail1);
+}
+
+/**Contact*/
+
+.form-home {
+  background: var(--brown);
+}
+
+.form-home input,
+.form-home textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  background: white;
+  padding: 10px 20px;
+}
+
+.form-home::placeholder,
+textarea {
+  color: var(--black);
+  font-weight: 500;
+}
+
+.wpcf7-quiz-label {
+  color: var(--black);
+  font-weight: 500;
+}
+
+.form-home input[type="submit"] {
+  color: white;
+  background-color: var(--black);
+  border-radius: 0px;
+  border: 2px solid var(--black);
+  transition: 0.3s ease-in;
+  text-transform: uppercase;
+}
+
+.form-home input[type="submit"]:hover {
+  color: var(--black);
+  background-color: white;
+}
+
+.form-home input[type="submit"]:focus {
+  background-color: white;
+  color: var(--black);
+  box-shadow: 0 0 0 0.25rem rgb(233 86 83 / 25%);
+}
+
+input,
+textarea {
+  caret-color: var(--brown);
+  color: var(--brown);
+  font-weight: 400;
+}
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+textarea {
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  outline: none !important;
+}
+
+.style-end-form {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: stretch;
+  justify-content: space-between;
+}
+
+input[name="anti-spam"] {
+  width: 50%;
+}
+
+@media screen and (max-width: 767.98px) {
+  .style-end-form {
+    display: flex;
+    flex-direction: column;
+  }
+  input[name="anti-spam"] {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  input[name="anti-spam"] {
+    width: 58%;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1199.98px) {
+  input[name="anti-spam"] {
+    width: 49%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 999.98px) {
+  input[name="anti-spam"] {
+    width: 155%;
+  }
+  .style-end-form {
+    display: flex;
+    flex-direction: column;
+  }
+}

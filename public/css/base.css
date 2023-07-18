@@ -1,0 +1,203 @@
+/* urbanist-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../font/urbanist-v10-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-regular.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+/* urbanist-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../font/urbanist-v10-latin-500.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-500.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-500.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-500.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-500.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+/* urbanist-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../font/urbanist-v10-latin-600.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-600.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-600.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-600.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-600.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-600.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+/* urbanist-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../font/urbanist-v10-latin-700.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-700.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-700.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-700.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-700.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-700.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+/* urbanist-800 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 800;
+  src: url("../font/urbanist-v10-latin-800.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-800.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-800.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-800.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-800.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-800.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+/* urbanist-900 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: "Urbanist";
+  font-style: normal;
+  font-weight: 900;
+  src: url("../font/urbanist-v10-latin-900.eot"); /* IE9 Compat Modes */
+  src: url("../font/urbanist-v10-latin-900.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("../font/urbanist-v10-latin-900.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("../font/urbanist-v10-latin-900.woff")
+      format("woff"),
+    /* Modern Browsers */ url("../font/urbanist-v10-latin-900.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("../font/urbanist-v10-latin-900.svg#Urbanist") format("svg"); /* Legacy iOS */
+}
+
+:root {
+  --bleu2: #18515c;
+  --corail1: #f7645d;
+  --BeigeClair1: #f0e5d3;
+  --BeigeClair2: #e9dbc1;
+  --BeigeClair3: #dccdb6;
+  --Gris1: #3e3943;
+  --Gris2: #2e2b31;
+  --Gris3: #1d1923;
+  --Gris-Blanc: #f4f4f4;
+}
+
+.bleu {
+  color: var(--bleu2);
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+h1 {
+  font-size: 34px;
+  font-family: "Urbanist";
+  color: var(--bleu2);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 30px;
+  font-family: "Urbanist";
+  color: var(--bleu2);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+:is(h3, .h3) {
+  font-size: 25px;
+  font-family: "Urbanist";
+  font-weight: 500;
+}
+
+h4,
+.h4 {
+  font-size: 20px;
+  font-family: "Urbanist";
+  font-weight: 500;
+}
+p {
+  font-size: 17px;
+  font-family: "Urbanist";
+  font-weight: 400;
+}
+p.prix {
+  font-size: 17px;
+  font-family: "Urbanist";
+  font-weight: 500;
+}
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+a.cta,
+button.cta {
+  background-color: white !important;
+  color: var(--Gris1) !important;
+  border: 1px solid var(--Gris1) !important;
+  padding: 13px 50px !important;
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: inline-block;
+  margin: 0 auto;
+  font-family: "Urbanist";
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.cta-big {
+  padding: 26px 100px;
+}
+a.cta:hover,
+a.cta:active,
+button.cta:hover,
+button.cta:active {
+  color: var(--corail1) !important;
+  border: 1px solid var(--corail1) !important;
+}
+
+a {
+  text-decoration: none !important;
+  color: var(--Gris1);
+}
+
+a:hover {
+  text-decoration: none !important;
+  color: var(--corail1);
+}
