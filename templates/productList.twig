@@ -42,7 +42,15 @@
 
         </div>
         <div class="col-8">
-        produits
+            {% for item in products %}
+                <div onclick="product_page()" class="product_img">
+                    <img src="/img/{{ item.image }}" alt="" />
+                    <div class="item-info">
+                        <p>{{ item.product_name }}</p>
+                        <span>{{ item.price }}€</span>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 

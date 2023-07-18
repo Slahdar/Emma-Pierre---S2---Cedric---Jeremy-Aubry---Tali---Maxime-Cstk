@@ -23,11 +23,13 @@ class ProductListController extends AbstractController
         $collections = $this->productModel->getCollections();
         $gemTypes = $this->productModel->getGemTypes();
         $categories = $this->productModel->getCategories();
+        $products = $this->productModel->getAllProducts();
 
         return $this->twig->render('productList.twig', [
             'collections' => $collections,
             'gemTypes' => $gemTypes,
-            'categories' => $categories
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
 }
