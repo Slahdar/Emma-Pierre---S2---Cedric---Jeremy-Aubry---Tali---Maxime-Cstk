@@ -21,9 +21,9 @@ class ProductModel
 
     public function createProduct(array $data): bool
     {
-        $sql = 'INSERT INTO products (name, price, description) VALUES (?, ?, ?)';
+        $sql = 'INSERT INTO product (product_name, price, description, image) VALUES (?, ?, ?, ?)';
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$data['name'], $data['price'], $data['description']]);
+        return $stmt->execute([$data['name'], $data['price'], $data['description'], $data['image']]);
     }
 
     public function getProductById(int $id)

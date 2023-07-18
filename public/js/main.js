@@ -1,35 +1,24 @@
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('new-product-form').addEventListener('submit', function (e) {
-        e.preventDefault();  // Prevent the form from submitting normally
+document.getElementById('new-product-form').addEventListener('submit', function (e) {
+    e.preventDefault();  // Prevent the form from submitting normally
 
-        var name = document.getElementById('name').value;
-        var price = document.getElementById('price').value;
-        var description = document.getElementById('description').value;
+    var formData = new FormData(this);
 
-        var data = {
-            name: name,
-            price: price,
-            description: description
-        };
-
-        fetch('/api/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+    fetch('/api/products', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert('Product created successfully!');
+            console.log('Success:', data);
         })
-            .then(response => response.json())
-            .then(data => {
-                alert('Product created successfully!');
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.log('error')
-            });
-    });
+        .catch((error) => {
+            alert('An error occurred.');
+            console.error('Error:', error);
+        });
 });
+
 
 function loadProducts() {
     fetch('/api/products', {
@@ -48,10 +37,15 @@ function loadProducts() {
                 var nameCell = newRow.insertCell(0);
                 var priceCell = newRow.insertCell(1);
                 var descriptionCell = newRow.insertCell(2);
+                var quantityCell = newRow.insertCell(3);
+                var editCell = newRow.insertCell(4);
+
 
                 nameCell.textContent = product.name;
                 priceCell.textContent = product.price;
                 descriptionCell.textContent = product.description;
+                quantityCell.textContent = product.quantity;
+                editCell.innerHTML = "<button onclick='editFunction(" + product.id + ")'>Edit</button>";
             });
         })
         .catch((error) => {

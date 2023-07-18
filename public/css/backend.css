@@ -1,0 +1,33 @@
+#products-table {
+    width: 80vw;
+    margin-bottom: 20px;
+}
+
+#products-table td {
+    text-align: center;
+}
+
+#new-product-form {
+
+    display: flex;
+
+}
+
+#new-product-form input {
+    height: 25px;
+
+}
+
+#new-prod-submit {
+    background-color: green;
+    color: white;
+    font-weight: bolder;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}

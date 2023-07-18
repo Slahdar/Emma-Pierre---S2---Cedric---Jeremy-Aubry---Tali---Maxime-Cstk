@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Controller\ContactController;
 use App\Controller\IndexController;
 use App\Controller\ApiController;
+use App\Controller\backEndController;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;

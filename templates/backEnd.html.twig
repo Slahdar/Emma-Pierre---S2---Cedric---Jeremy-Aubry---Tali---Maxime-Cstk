@@ -1,87 +1,44 @@
-<form id="product-form">
-    <label for="product-name">Name:</label><br>
-    <input type="text" id="product-name" name="product-name"><br>
-    <label for="product-price">Price:</label><br>
-    <input type="number" id="product-price" name="product-price"><br>
-    <label for="product-description">Description:</label><br>
-    <textarea id="product-description" name="product-description"></textarea><br>
-    <input type="submit" value="Add Product">
-</form>
+<link rel="stylesheet" href="css/backend.css">
+<a href="/">Go back to website</a>
+<h1>Back End </h1>
 
-<table id="products-table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Products will be inserted here -->
-    </tbody>
-</table>
+<div class="centered">
 
-<script>
+    <table id="products-table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
 
-document.getElementById('product-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+        </tbody>
+    </table>
 
-    var name = document.getElementById('product-name').value;
-    var price = document.getElementById('product-price').value;
-    var description = document.getElementById('product-description').value;
+    <form id="new-product-form" enctype="multipart/form-data">
+        <label for="name">Product Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" name="price"><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea>
+        <select id="category-select">
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
 
-    fetch('/api/products', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            name: name,
-            price: price,
-            description: description
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.error) {
-            alert('Error: ' + data.error);
-        } else {
-            alert('Product added successfully');
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-    loadProducts();
-});
-
-function loadProducts() {
-    fetch('/api/products', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        var tableBody = document.getElementById('products-table').getElementsByTagName('tbody')[0];
-
-        data.forEach(product => {
-            var newRow = tableBody.insertRow();
-
-            var nameCell = newRow.insertCell(0);
-            var priceCell = newRow.insertCell(1);
-            var descriptionCell = newRow.insertCell(2);
-
-            nameCell.textContent = product.name;
-            priceCell.textContent = product.price;
-            descriptionCell.textContent = product.description;
-        });
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-window.onload = loadProducts;
-</script>
+        <select id="type-select">
+            {% for type in types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="file" id="image" name="image">
+        <input id="new-prod-submit" type="submit" value="Add +">
+    </form>
+</div>
+<script src="/js/main.js"></script>
