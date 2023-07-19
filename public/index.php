@@ -14,13 +14,15 @@ use App\Routing\ArgumentResolver;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Models\LoginModel;
+
 
 $dotenv = new Dotenv();
 $dotenv->loadEnv(__DIR__ . '/../.env');
 
 if (
   php_sapi_name() !== 'cli' && // Environnement d'exécution != console
-  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif)$/', $_SERVER['REQUEST_URI'])
+  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif|woff2|svg|webp)$/', $_SERVER['REQUEST_URI'])
 ) {
   return false;
 }
@@ -58,7 +60,8 @@ $serviceContainer
   ->set(PDO::class, $pdo)
   ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo))
   ->set(App\Models\CategoryModel::class, new App\Models\CategoryModel($pdo))
-  ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo));
+  ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo))
+  ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();

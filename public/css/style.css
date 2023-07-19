@@ -20,6 +20,14 @@ h2 {
   margin-bottom: 30px !important;
 }
 
+.product_img,
+.product_img > * {
+  max-width: 150px;
+  height: 150px;
+  cursor: pointer;
+  text-align: center;
+}
+
 /* @media screen and (min-width: 1000px) {
   #page-container > * {
     height: 100vh;
@@ -243,7 +251,7 @@ h2 {
   height: 600px;
 }
 
-.collec-container div{
+.collec-container div {
   cursor: pointer;
 }
 
@@ -344,9 +352,8 @@ h2 {
 
 @media screen and (max-width: 747px) {
   .header-txt {
-  top: 8%;
+    top: 8%;
   }
-
 }
 
 .img-collection-header {
@@ -491,7 +498,7 @@ h2 {
   opacity: 1;
 }
 
-.click > div > :is(div, div p){
+.click > div > :is(div, div p) {
   cursor: pointer;
 }
 
