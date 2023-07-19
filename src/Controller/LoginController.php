@@ -34,18 +34,22 @@ class LoginController extends AbstractController
                 exit;
             } else {
                 $errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
-                return $this->twig->render('login.twig', ['error' => $errorMessage]);
+                return $this->twig->render('login.twig', ['login_error' => $errorMessage]);
             }
         }
 
-        // Affichage du formulaire de connexion
-        return $this->twig->render('login.twig');
+        if (isset($_SESSION['user_id'])) {
+            return $this->twig->render('userAccount.twig');
+        } else {
+            // Affichage du formulaire de connexion
+            return $this->twig->render('login.twig');
+        }
     }
 
     public function logout(): void
     {
         $this->loginModel->clearUserSession();
-        // Rediriger l'utilisateur vers la page de connexion ou une autre page appropriée
-        // Utiliser par exemple : header('Location: /login');
+
+        header('Location: /');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+session_start();
 
 // Initialisation de certaines choses
 use App\Controller\ContactController;
@@ -61,10 +62,14 @@ $serviceContainer
   ->set(App\Models\ProductModel::class, new App\Models\ProductModel($pdo))
   ->set(App\Models\CategoryModel::class, new App\Models\CategoryModel($pdo))
   ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo))
-  ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo));
+  ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo))
+  ->set(App\Models\RegisterModel::class, new App\Models\RegisterModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();
+
+// Enregistrer la route de déconnexion
+Router::registerLogoutRoute($router);
 
 try {
   $router->execute($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

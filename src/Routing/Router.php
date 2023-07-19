@@ -138,4 +138,9 @@ class Router
       }
     }
   }
+
+  public static function registerLogoutRoute(self $router)
+  {
+    $router->addRoute(new Route('/logout', 'App\Controller\LoginController', 'logout', ['GET'], 'logoutPage'));
+  }
 }
