@@ -16,8 +16,7 @@ class LoginController extends AbstractController
         $this->loginModel = $loginModel;
     }
 
-    #[Route("/login", name: "loginPage")]
-
+    #[Route("/login", name: "loginPage", httpMethods: ["GET", "POST"])]
     public function login(): string
     {
         // Traitement du formulaire de connexion

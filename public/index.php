@@ -22,7 +22,7 @@ $dotenv->loadEnv(__DIR__ . '/../.env');
 
 if (
   php_sapi_name() !== 'cli' && // Environnement d'exécution != console
-  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif)$/', $_SERVER['REQUEST_URI'])
+  preg_match('/\.(ico|png|jpg|jpeg|css|js|gif|woff2|svg|webp)$/', $_SERVER['REQUEST_URI'])
 ) {
   return false;
 }

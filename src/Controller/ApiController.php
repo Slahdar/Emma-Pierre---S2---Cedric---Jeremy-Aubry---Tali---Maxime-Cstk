@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Routing\Attribute\Route;
 use App\Models\ProductModel;
+use Exception;
 
 class ApiController extends AbstractController
 {
@@ -13,7 +14,7 @@ class ApiController extends AbstractController
     {
         $this->productModel = $productModel;
     }
-    #[Route("/api/products", name: "api_products_post", httpMethod: "POST")]
+    #[Route("/api/products", name: "api_products_post", httpMethods: ["POST"])]
     public function postProduct(): string
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -74,7 +75,13 @@ class ApiController extends AbstractController
         return json_encode($products);
     }
 
-    #[Route("/api/products/{id}", name: "api_product_get",  httpMethod: "POST")]
+    #[Route("/api/products/{id}", name: "api_product_get")]
+    public function getProductItem(int $id): string
+    {
+        return $id;
+    }
+
+    #[Route("/api/products/{id}", name: "api_product_post", httpMethods: ["POST"])]
     public function getProduct(int $id): string
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
