@@ -28,8 +28,8 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        if ($_SESSION['status'] == 1) {
-            http_response_code(401);  
+        if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
+            http_response_code(401);
             return json_encode(['error' => 'unauthorised']);
         }
 
@@ -135,8 +135,8 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        if ($_SESSION['status'] == 1) {
-            http_response_code(401);  
+        if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
+            http_response_code(401);
             return json_encode(['error' => 'unauthorised']);
         }
 
@@ -158,7 +158,7 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        
+
 
         $product = $this->productModel->getProductById($id);
         if ($product) {
@@ -180,8 +180,8 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        if ($_SESSION['status'] == 1) {
-            http_response_code(401);  
+        if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
+            http_response_code(401);
             return json_encode(['error' => 'unauthorised']);
         }
 
@@ -239,7 +239,7 @@ class ApiController extends AbstractController
             }
         }
 
-        
+
         $_SESSION['Cart'] = array_values($_SESSION['Cart']);
 
         return json_encode(['message' => 'Product deleted successfully']);
@@ -249,43 +249,42 @@ class ApiController extends AbstractController
     #[Route("/api/order", name: "api_order", httpMethods: ["POST"])]
     public function doTheOrder()
     {
-       
+
         header('Content-Type: application/json');
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405);  
+            http_response_code(405);
             return json_encode(['error' => 'Invalid HTTP method']);
         }
         $user_id = $_SESSION['user_id'];
         $cart = $this->cartModel->getCartItems();
-        
-        
-        $order = $this->orderModel->doOrder($user_id,$cart);
+
+
+        $order = $this->orderModel->doOrder($user_id, $cart);
         if ($order) {
             unset($_SESSION['Cart']);
             return json_encode(['message' => 'order was sucessfull']);
         } else {
-            http_response_code(404);  
+            http_response_code(404);
             return json_encode(['error' => 'error processing order']);
         }
     }
 
-    #[Route("/api/orders", name: "api_get_orders", httpMethods: ["GET","POST"])]
+    #[Route("/api/orders", name: "api_get_orders", httpMethods: ["GET", "POST"])]
     public function getTheOrders()
     {
-       
+
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-            http_response_code(405);  
+            http_response_code(405);
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        if ($_SESSION['status'] == 1) {
-            http_response_code(401);  
+        if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
+            http_response_code(401);
             return json_encode(['error' => 'unauthorised']);
         }
 
         $orders = $this->orderModel->getAllOrders();
         return json_encode($orders);
     }
-
-   }
+}
