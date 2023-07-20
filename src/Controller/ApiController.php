@@ -110,4 +110,16 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Product not found']);
         }
     }
+
+    #[Route("/api/addCart/{id}", name: "api_addCart_post", httpMethods: ["GET", "POST"])]
+    public function addItemToCart(int $id)
+    {
+        if (!isset($_SESSION['Cart'])) {
+            $_SESSION['Cart'] = [];
+        }
+        array_push($_SESSION['Cart'], ['id' => $id, 'qty' => 1]);
+
+        // Renvoyer une réponse JSON indiquant le succès de l'opération
+        return json_encode(['success' => true]);
+    }
 }
