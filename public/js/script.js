@@ -106,7 +106,7 @@ function unique() {
   window.location.href = "collection-unique.html";
 }
 
-window.onload = refreshCart;
+window.onload = refreshCart();
 
 function refreshCart() {
   fetch("/api/cart", {

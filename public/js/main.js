@@ -14,7 +14,6 @@ document
         alert("Product created successfully!");
         console.log(formData);
         loadProducts();
-
       })
       .catch((error) => {
         alert("An error occurred.");
@@ -23,7 +22,7 @@ document
   });
 
 function loadProducts() {
-  console.log('load products executed');
+  console.log("load products executed");
 
   fetch("/api/productsbis", {
     method: "GET",
@@ -38,7 +37,7 @@ function loadProducts() {
         .getElementsByTagName("tbody")[0];
 
       // Clear the table body
-      tableBody.innerHTML = '';
+      tableBody.innerHTML = "";
 
       data.forEach((product) => {
         console.log(product);
@@ -59,7 +58,9 @@ function loadProducts() {
         gemTypeCell.textContent = product.gem_name;
         collectionCell.textContent = product.collection_name;
         deleteCell.innerHTML =
-          "<button onclick='deleteProduct(" + product.product_id + ")'>Delete</button>";
+          "<button onclick='deleteProduct(" +
+          product.product_id +
+          ")'>Delete</button>";
       });
     })
     .catch((error) => {
@@ -69,23 +70,21 @@ function loadProducts() {
 
 function deleteProduct(id) {
   fetch(`/api/product/delete/${id}`, {
-    method: 'POST'
+    method: "POST",
   })
-    .then(response => {
+    .then((response) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
     })
     .then(() => {
       alert("Product deleted successfully!");
-
     })
-    .catch(error => {
-      console.error('There was an error:', error);
+    .catch((error) => {
+      console.error("There was an error:", error);
     });
 
   loadProducts();
-
 }
 
 window.onload = loadProducts;
