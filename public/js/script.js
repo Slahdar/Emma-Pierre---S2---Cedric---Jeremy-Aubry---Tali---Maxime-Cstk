@@ -88,7 +88,7 @@ function panier() {
 }
 
 function product_list() {
-  window.location.href = "product_list.html";
+  window.location.href = "/productList";
 }
 function product_page(id) {
   window.location.href = `/product/${id}`;
