@@ -1,0 +1,163 @@
+{% include 'header.twig' %}
+{% block content %}
+{# <div id="page-container"> #}
+	<div class="row section-content">
+		<div class="container-collec row col-12 col-sm-6">
+			<div class="container-text-collec">
+				<h3>“Nous sommes impatients de vous entendre et de vous aider à trouver le bijou parfait pour
+																					                        compléter votre style personnel et ajouter une touche de glamour à votre garde-robe.”</h3>
+				<h3 style="align-self: flex-end;">La fondatrice</h3>
+			</div>
+		</div>
+		<img src="/img/hand_bracket.webp" alt="" class="img-collection-header col-12 col-sm-6">
+	</div>
+
+	<div class="row section-content checkbox-contactPage">
+		<div class="col-6">
+			<input type="checkbox" id="contact-checkbox" name="contact-checkbox" checked>
+			<label for="contact-checkbox"></label>
+			Contact
+		</div>
+		<div class="col-6">
+			<input type="checkbox" id="devis-checkbox" name="devis-checkbox">
+			<label for="devis-checkbox"></label>
+			Devis
+		</div>
+	</div>
+
+	
+
+	<div class="row section-content">
+		<div id="contact" class="p-2">
+			<form class="contact-form">
+				<div class="row">
+					<div class="col-12 col-sm-6">
+						<div class="div-input-contact">
+							<label for="name">Nom *</label>
+							<input type="text" id="name" name="user_name">
+						</div>
+						<div class="div-input-contact">
+							<label for="name">Email*</label>
+							<input type="text" id="mail" name="user_mail">
+						</div>
+					</div>
+					<div class="col-12 col-sm-6">
+						<div class="div-input-contact">
+							<label for="name">Prénom *</label>
+							<input type="text" id="firstname" name="user_firstname">
+						</div>
+						<div class="div-input-contact">
+							<label for="name">Téléphone *</label>
+							<input type="text" id="phone" name="user_phone">
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="div-input-contact">
+							<label for="name">Message *</label>
+							<textarea type="text" id="message" name="user_message"></textarea>
+						</div>
+					</div>
+					<button type="submit" class="sbm-btn-contact">Envoyer</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="devis" class="p-2" style="display: none;">
+			<form class="contact-form">
+				<div class="row">
+					<div class="col-12 col-sm-6">
+						<div class="div-input-contact">
+							<label for="name">Nom *</label>
+							<input type="text" id="name" name="user_name" required>
+						</div>
+						<div class="div-input-contact">
+							<label for="name">Email*</label>
+							<input type="text" id="mail" name="user_mail" required>
+						</div>
+					</div>
+					<div class="col-12 col-sm-6">
+						<div class="div-input-contact">
+							<label for="name">Prénom *</label>
+							<input type="text" id="firstname" name="user_firstname" required>
+						</div>
+						<div class="div-input-contact">
+							<label for="name">Téléphone *</label>
+							<input type="text" id="phone" name="user_phone" required>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="div-input-contact">
+							<label for="name">Sujet *</label>
+							<input type="text" id="subject" name="user_subject" required>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="div-input-contact">
+							<label for="name">Message *</label>
+							<textarea type="text" id="message" name="user_message" required></textarea>
+						</div>
+					</div>
+
+					<div class="col-12">
+						<div id="pictures-to-add">
+							<p>Pour nous adresser des photos, croquis ou schémas : Glissez vos fichiers ou cliquez ici
+								<br>
+								(Limité à 3 fichiers maximum / poids total maximal de 5 Mo)
+							</p>
+						</div>
+					</div>
+					<button type="submit" class="sbm-btn-contact">Envoyer</button>
+				</div>
+			</form>
+		</div>
+
+		{% if success %}
+        <div class="success-message">{{ success }}</div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error-message">{{ error }}</div>
+    {% endif %}
+	</div>
+{# </div> #}
+{% endblock %}
+
+
+{% block footer %}
+{% include 'footer.twig' %}
+{% endblock %}
+{% block script %}
+	<script>
+		let checkboxContact = document.getElementById('contact-checkbox');
+		let checkboxDevis = document.getElementById('devis-checkbox');
+
+		let contact = document.getElementById('contact');
+		let devis = document.getElementById('devis');
+
+		checkboxContact.addEventListener('click', function () {
+
+		contact.style.display = 'block';
+		devis.style.display = 'none';
+
+		checkboxDevis.checked = false;
+
+		if (checkboxContact.checked == false && checkboxDevis.checked == false) {
+
+		checkboxContact.checked = true;
+		}
+		});
+
+		checkboxDevis.addEventListener('click', function () {
+
+		devis.style.display = 'block';
+		contact.style.display = 'none';
+
+		checkboxContact.checked = false;
+
+		if (checkboxContact.checked == false && checkboxDevis.checked == false) {
+
+		checkboxDevis.checked = true;
+		}
+		});
+	</script>
+{% endblock %}
