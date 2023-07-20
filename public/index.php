@@ -8,6 +8,7 @@ use App\Controller\ProductListController;
 use App\Controller\IndexController;
 use App\Controller\ApiController;
 use App\Controller\backEndController;
+use App\Controller\cartController;
 use App\DependencyInjection\Container;
 use App\Routing\RouteNotFoundException;
 use App\Routing\Router;

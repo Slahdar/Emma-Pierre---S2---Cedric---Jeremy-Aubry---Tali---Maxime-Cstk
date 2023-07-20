@@ -1,0 +1,96 @@
+{% include 'header.twig' %}
+<link rel="stylesheet" href="/css/panier.css">
+
+ <section class="panier-section">
+
+            <div class="panier-wrap">
+                <div class="cart-flex">
+                    <h1>Mon Panier</h1>
+                    <div class="quantite-prix mob-d-none">
+                        <p class="h3">Quantité</p>
+                        <p class="h3">Prix</p>
+                    </div>
+                </div>
+                <hr class="corail">
+                <div id = "cartItems">
+                
+                </div>
+                <div style="margin-top: 3rem;">
+                    <label class="h4"><input type="checkbox" name="emballage"> Je souhaite un emballage cadeau </label>
+                </div>
+
+
+            </div>
+
+
+            <div class="total-wrap">
+                <div class="sous-total">
+                    <p class="h4 bleu  m-0"> Sous Total</p>
+                    <p id="sous-total-value"class="h4 bleu m-0"></p>
+                </div>
+                <hr class="corail">
+                
+                <hr class="corail pc-d-none">
+
+                <a href="livraison.html" class="cta cta-big text-center" role="button">Valider mon panier</a>
+                <div>
+                    <p class="h4">Ajouter un code promo</p>
+                    <div class="sous-total">
+                        <input type="text" class="code-promo">
+                        <a href="" class="cta text-center" role="button">Appliquer</a>
+
+                    </div>
+                </div>
+                <div class="rassurance">
+                    <img src="assets/icon/paiement.svg">
+                    <p class="h4 bleu m-0">Paiement sécurisé</p>
+                </div>
+                <div class="rassurance">
+                    <img src="assets/icon/car.svg">
+                    <p class="h4 bleu m-0">Livraison offerte dès 100€</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section style="margin-top: 3rem">
+            <h2>Vous aimerez aussi</h2>
+            <div class="carousel">
+                <div class="card-produit">
+                    <img src="assets/img/883f5585-5ac8-4918-86a3-front.jpg.webp">
+                    <div class="card-produit-prix">
+                        <p class="m-0">Lorem Ipsum</p>
+                        <p class="prix m-0">50.00€</p>
+                    </div>
+
+                </div>
+                <div class="card-produit">
+                    <img src="assets/img/883f5585-5ac8-4918-86a3-front.jpg.webp">
+                    <div class="card-produit-prix">
+                        <p class="m-0">Lorem Ipsum</p>
+                        <p class="prix m-0">50.00€</p>
+                    </div>
+
+                </div>
+                <div class="card-produit">
+                    <img src="assets/img/883f5585-5ac8-4918-86a3-front.jpg.webp">
+                    <div class="card-produit-prix">
+                        <p class="m-0">Lorem Ipsum</p>
+                        <p class="prix m-0">50.00€</p>
+                    </div>
+
+                </div>
+                <div class="card-produit">
+                    <img src="assets/img/883f5585-5ac8-4918-86a3-front.jpg.webp">
+                    <div class="card-produit-prix">
+                        <p class="m-0">Lorem Ipsum</p>
+                        <p class="prix m-0">50.00€</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+{% include 'footer.twig' %}
+
+<script src="/js/cart.js"></script>

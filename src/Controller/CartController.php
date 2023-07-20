@@ -2,31 +2,13 @@
 
 namespace App\Controller;
 
-use App\Models\CartModel;
-use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
+use App\Routing\Attribute\Route;
 
-class CartController extends AbstractController
+class cartController extends AbstractController
 {
-    private CartModel $cartModel;
-    protected Environment $twig;
-
-    public function __construct(CartModel $cartModel, Environment $twig)
+    #[Route("/cart", name: "Cart")]
+    public function home(): string
     {
-        $this->cartModel = $cartModel;
-        $this->twig = $twig;
-    }
-
-    public function showCart(): Response
-    {
-        $cartItems = $this->cartModel->getCartItems();
-        $cartTotal = $this->cartModel->getTotal();
-
-        $content = $this->twig->render('cart.twig', [
-            'cartItems' => $cartItems,
-            'cartTotal' => $cartTotal,
-        ]);
-
-        return new Response($content);
+        return $this->twig->render('cartPage.html.twig');
     }
 }
