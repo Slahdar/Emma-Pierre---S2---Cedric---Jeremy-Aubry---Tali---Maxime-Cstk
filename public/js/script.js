@@ -84,7 +84,7 @@ window.addEventListener("scroll", function () {
 // });
 
 function panier() {
-  window.location.href = "panier.html";
+  window.location.href = "/cart";
 }
 
 function product_list() {

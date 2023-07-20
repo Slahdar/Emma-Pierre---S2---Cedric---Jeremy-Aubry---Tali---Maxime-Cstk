@@ -44,8 +44,28 @@ function displayCart() {
 }
 
 function deleteItem(id) {
-    removeItem(id);
-    displayCart();
+    removeItem2(id)
+    .catch(error => {
+        console.error("Error deleting the product:", error);
+    });
+}
+
+function removeItem2(id) {
+    return fetch(`/api/cart/delete/${id}`, {
+        method: "POST",
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    })
+    .then(() => {
+        location.reload();  // forces a complete page refresh
+    })
+    .catch((error) => {
+        console.error("There was an error:", error);
+        throw error;  // Rethrowing to handle in the deleteItem function.
+    });
 }
 
 window.onload = displayCart;
