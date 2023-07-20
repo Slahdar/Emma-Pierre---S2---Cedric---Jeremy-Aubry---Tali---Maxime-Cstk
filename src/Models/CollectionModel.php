@@ -11,7 +11,7 @@ class CollectionModel
         $this->pdo = $pdo;
     }
 
-    public function getAllTypes()
+    public function getAllCollection()
     {
         $stmt = $this->pdo->prepare("SELECT * FROM collection");
         $stmt->execute();

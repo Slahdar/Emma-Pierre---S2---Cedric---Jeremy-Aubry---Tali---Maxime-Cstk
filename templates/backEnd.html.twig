@@ -10,7 +10,9 @@
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Description</th>
-                <th>Quantité</th>
+                <th>categorie</th>
+                <th>Gemtype</th>
+                <th>collection</th>
                 <th>Edit</th>
             </tr>
         </thead>
@@ -26,18 +28,24 @@
         <input type="text" id="price" name="price"><br>
         <label for="description">Description:</label><br>
         <textarea id="description" name="description"></textarea>
-        <select id="category-select">
-            {% for category in categories %}
-            <option value="{{ category.category_id }}">{{ category.category_name }}</option>
-            {% endfor %}
-        </select>
+<select id="category-select" name="category-select">
+    {% for category in categories %}
+    <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+    {% endfor %}
+</select>
 
-        <select id="type-select">
-            {% for type in types %}
-            <option value="{{ type.gem_id }}">{{ type.gem_name }}</option>
-            {% endfor %}
-        </select>
-        <input type="file" id="image" name="image">
+<select id="type-select" name="type-select">
+    {% for type in types %}
+    <option value="{{ type.gem_id }}">{{ type.gem_name }}</option>
+    {% endfor %}
+</select>
+
+<select id="collection-select" name="collection-select">
+    {% for collection in collections %}
+    <option value="{{ collection.collection_id }}">{{ collection.collection_name }}</option>
+    {% endfor %}
+</select>
+<input type="file" id="image" name="image">
         <input id="new-prod-submit" type="submit" value="Add +">
     </form>
 </div>

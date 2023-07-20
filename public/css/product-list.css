@@ -22,18 +22,19 @@ img {
   width: 300px;
   margin-right: 10px;
 }
-.grid-wrapper > div {
+
+.grid-wrapper>div {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   margin-bottom: 2rem;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease-in-out;
   cursor: pointer;
 }
 
-.grid-wrapper > div:hover {
+.grid-wrapper>div:hover {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,13 +56,15 @@ img {
   font-weight: bold;
 }
 
-.item-info > p {
+.item-info>p {
   margin: 0px 10px auto 5px;
 }
-.item-info > span {
+
+.item-info>span {
   margin: 0px 10px auto 0px;
 }
-.grid-wrapper > div > img {
+
+.grid-wrapper>div>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -77,12 +80,15 @@ img {
   width: calc(100% - 300px);
   margin-left: 5px;
 }
+
 .grid-wrapper .wide {
   grid-column: span 2;
 }
+
 .grid-wrapper .tall {
   grid-row: span 2;
 }
+
 .grid-wrapper .big {
   grid-column: span 2;
   grid-row: span 2;
@@ -103,7 +109,7 @@ img {
   transition: all 0.3s ease-out;
 }
 
-.filter-cat > p {
+.filter-cat>p {
   color: grey;
   margin: 2px 2px 2px 20px;
 }
@@ -120,7 +126,7 @@ img {
   transition: all 0.3s ease-out;
 }
 
-.filter-title > p {
+.filter-title>p {
   width: 90%;
   font-weight: bold;
 }
@@ -132,7 +138,7 @@ img {
 
   #filter-wrapper {
     width: 100%;
-    margin-top:50px
+    margin-top: 50px
   }
 
   .grid-wrapper {

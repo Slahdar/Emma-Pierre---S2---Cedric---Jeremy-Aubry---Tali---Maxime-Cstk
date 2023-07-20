@@ -25,7 +25,9 @@ class ApiController extends AbstractController
         $productData = [
             'name' => $_POST['name'] ?? null,
             'price' => $_POST['price'] ?? null,
-            'description' => $_POST['description'] ?? null
+            'description' => $_POST['description'] ?? null,
+            'category-select' => $_POST['category-select'] ?? null,
+            'type-select' => $_POST['type-select'] ?? null,
         ];
 
         // You can validate your product data here
@@ -74,6 +76,17 @@ class ApiController extends AbstractController
         $products = $this->productModel->getAllProducts();
         return json_encode($products);
     }
+    #[Route("/api/productsbis", name: "api_products_get_bis")]
+    public function getAllProductsBis(): string
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        $products = $this->productModel->getAllProductsBis();
+        return json_encode($products);
+    }
 
     #[Route("/api/products/{id}", name: "api_product_get")]
     public function getProductItem(int $id): string
@@ -89,7 +102,7 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
-        $product = $this->productModel->editProductById($id);
+        $product = $this->productModel->getProductById($id);
         if ($product) {
             return json_encode($product);
         } else {

@@ -19,11 +19,21 @@ class ProductModel
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function getAllProductsBis()
+    {
+        $stmt = $this->pdo->prepare(
+            " SELECT p.product_id, p.product_name, p.price, p.description, p.image, c.category_name, g.gem_name, col.collection_name FROM product p LEFT JOIN category c ON p.category_id = c.category_id LEFT JOIN gem_type g ON p.gem_id = g.gem_id LEFT JOIN collection col ON p.collection_id = col.collection_id "
+        );
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function createProduct(array $data): bool
     {
-        $sql = 'INSERT INTO product (product_name, price, description, image) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO product (product_name, price, description, image, category_id, gem_id) VALUES (?, ?, ?, ?, ?, ?)';
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$data['name'], $data['price'], $data['description'], $data['image']]);
+        return $stmt->execute([$data['name'], $data['price'], $data['description'], $data['image'], $data['category-select'], $data['type-select']]);
     }
 
     public function getProductById(int $id)
@@ -34,13 +44,7 @@ class ProductModel
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function editProductById(int $id)
-    {
-        $stmt = $this->pdo->prepare("SELECT * FROM product WHERE product_id = ?");
-        $stmt->execute([$id]);
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
 
     public function getCollections(): array
     {

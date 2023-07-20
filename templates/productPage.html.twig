@@ -1,0 +1,148 @@
+
+
+<link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/navbar-style.css">
+    <link rel="stylesheet" href="/css/product-page.css">
+    <link rel="stylesheet" href="/css/caroussel-style.css">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/css/tabs-1-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+{% include 'header.twig' %}
+<link rel="stylesheet" href="/css/product-list.css">
+
+  <div id="ariane">
+            <p>Accueil/.../.../...</p>
+        </div>
+        <div id="product-wrapper">
+
+            <div id="product">
+                <div id="more-images">
+                    <i class="fa-solid fa-angle-up arrows"></i>
+                    <div class="small-img-wrapper">
+                        <img src="/img/{{ product.image }}" alt="">
+                    </div>
+                    <div class="small-img-wrapper">
+                        <img src="/img/{{ product.image }}" alt="">
+                    </div>
+                    <div class="small-img-wrapper">
+                        <img src="/img/{{ product.image }}" alt="">
+                    </div>
+                    <i class="fa-solid fa-angle-down arrows"></i>
+                </div>
+                <div id="product-image">
+                    <div id="image-wrapper">
+                        <img src="/img/{{ product.image }}>
+                    </div>
+                </div>
+                <div id="product-info">
+                    <h1>{{ product.product_name }}</h1>
+                    <p>50€</p>
+                    <p>{{ product.description }}</p>
+                    <div class="counter">
+                        <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                        <input type="text" value="1">
+                        <span class="up" onClick='increaseCount(event, this)'>+</span>
+                    </div>
+                    <button class="cta" id=""><img id="cart-btn" class="pe-2"
+                            src="assets/icon/ph_handbag.png"></i>Ajouter au
+                        panier</button>
+                </div>
+            </div>
+        </div>
+        <div id="desc-wrapper">
+
+        </div>
+        <h2 class="text-center">Description</h2>
+        <div class="tabs">
+            <div class="tab-2">
+                <label for="tab2-1">Caractéristiques</label>
+                <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+                <div>
+                    <p>La boucle d'oreille 'Étoile Filante' de notre collection 'Cosmic Chic' est un véritable bijou
+                        intergalactique pour les fashionistas audacieuses ! Cette petite merveille en forme d'étoile
+                        filante est faite de métal extraterrestre ultra-léger, provenant d'une lointaine galaxie. </p>
+                    <p>Sa surface scintillante est parsemée de poussière d'étoile authentique, capturée lors d'une
+                        mission spatiale secrète de la NASA. Chaque boucle d'oreille est munie d'un mini propulseur qui
+                        vous permettra de vous déplacer à la vitesse de la lumière dans la galaxie de la mode !</p>
+                    <p>En portant cette boucle d'oreille, vous aurez l'impression de faire partie de la royauté
+                        interstellaire et d'être la reine de votre propre univers fashion. Préparez-vous à briller comme
+                        une étoile filante avec ce bijou cosmique qui vous propulsera vers de nouveaux sommets de style
+                    </p>
+                </div>
+            </div>
+            <div class="tab-2">
+                <label for="tab2-2">En savoir plus</label>
+                <input id="tab2-2" name="tabs-two" type="radio">
+                <div>
+                    <p>La boucle d'oreille 'Étoile Filante' de notre collection 'Cosmic Chic' est un véritable bijou
+                        intergalactique pour les fashionistas audacieuses ! Cette petite merveille en forme d'étoile
+                        filante est faite de métal extraterrestre ultra-léger, provenant d'une lointaine galaxie. </p>
+                    <p>Sa surface scintillante est parsemée de poussière d'étoile authentique, capturée lors d'une
+                        mission spatiale secrète de la NASA. Chaque boucle d'oreille est munie d'un mini propulseur qui
+                        vous permettra de vous déplacer à la vitesse de la lumière dans la galaxie de la mode !</p>
+                    <p>En portant cette boucle d'oreille, vous aurez l'impression de faire partie de la royauté
+                        interstellaire et d'être la reine de votre propre univers fashion. Préparez-vous à briller comme
+                        une étoile filante avec ce bijou cosmique qui vous propulsera vers de nouveaux sommets de style
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="more-products-wrapper">
+            <h2>Produits similaire</h2>
+            <div id="product-card-list">
+                <div class="prod-card">
+                    <div class="card-img">
+                        <img src="assets/img/earings_zoom_2.jpeg" alt="" />
+
+                    </div>
+                    <div class="item-info">
+                        <p>Boucles d'oreilles</p>
+                        <span>50€</span>
+                    </div>
+                </div>
+                <div class="prod-card">
+                    <div class="card-img">
+                        <img src="assets/img/bracelet.webp" alt="" />
+
+                    </div>
+                    <div class="item-info">
+                        <p>Bracelet</p>
+                        <span>50€</span>
+                    </div>
+                </div>
+                <div class="prod-card">
+                    <div class="card-img">
+                        <img src="assets/img/neck_necklace.jpeg" alt="" />
+
+                    </div>
+                    <div class="item-info">
+                        <p>Collier</p>
+                        <span>50€</span>
+                    </div>
+                </div>
+                <div class="prod-card">
+                    <div class="card-img">
+                        <img src="assets/img/earings_zoom_3.jpg" alt="" />
+
+                    </div>
+                    <div class="item-info">
+                        <p>Boucles d'oreilles</p>
+                        <span>50€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+{% include 'footer.twig' %}
+
+<script src="/js/caroussel-script.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/product-count.js"></script>

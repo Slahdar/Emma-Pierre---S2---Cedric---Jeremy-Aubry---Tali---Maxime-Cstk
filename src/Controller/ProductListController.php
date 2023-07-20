@@ -25,7 +25,7 @@ class ProductListController extends AbstractController
         $categories = $this->productModel->getCategories();
         $products = $this->productModel->getAllProducts();
 
-        return $this->twig->render('productList.twig', [
+        return $this->twig->render('productList.html.twig', [
             'collections' => $collections,
             'gemTypes' => $gemTypes,
             'categories' => $categories,
