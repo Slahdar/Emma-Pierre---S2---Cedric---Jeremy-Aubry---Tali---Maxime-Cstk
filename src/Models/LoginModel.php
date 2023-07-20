@@ -13,10 +13,14 @@ class LoginModel
 
     public function getUserByUsername(string $username): ?array
     {
-        $statement = $this->pdo->prepare("SELECT * FROM user WHERE username = :username");
-        $statement->execute(['username' => $username]);
+        $query = "SELECT * FROM user WHERE username = :username";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute(['username' => $username]);
 
-        return $statement->fetch(\PDO::FETCH_ASSOC);
+        // Fetch the first row as an associative array
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        return $user ? $user : null;
     }
 
     public function getUserById(int $userId): ?array
