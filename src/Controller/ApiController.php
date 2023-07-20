@@ -28,6 +28,7 @@ class ApiController extends AbstractController
             'description' => $_POST['description'] ?? null,
             'category-select' => $_POST['category-select'] ?? null,
             'type-select' => $_POST['type-select'] ?? null,
+            'collection-select' => $_POST['collection-select'] ?? null,
         ];
 
         // You can validate your product data here
@@ -105,6 +106,26 @@ class ApiController extends AbstractController
         $product = $this->productModel->getProductById($id);
         if ($product) {
             return json_encode($product);
+        } else {
+            http_response_code(404);  // Not Found
+            return json_encode(['error' => 'Product not found']);
+        }
+    }
+
+    #[Route("/api/product/delete/{id}", name: "api_product_delete", httpMethods: ["GET", "POST"])]
+    public function deleteProduct(int $id): string
+    {
+        // Set the Content-Type header
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        $product = $this->productModel->deleteProductById($id);
+        if ($product) {
+            return json_encode(['message' => 'Product deleted successfully']);
         } else {
             http_response_code(404);  // Not Found
             return json_encode(['error' => 'Product not found']);

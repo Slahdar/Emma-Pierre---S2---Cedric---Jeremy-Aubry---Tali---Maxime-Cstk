@@ -13,6 +13,7 @@ document
             .then((data) => {
                 alert("Product created successfully!");
                 console.log(formData);
+                loadProducts();
 
             })
             .catch((error) => {
@@ -22,6 +23,8 @@ document
     });
 
 function loadProducts() {
+    console.log('load products executed');
+
     fetch("/api/productsbis", {
         method: "GET",
         headers: {
@@ -34,6 +37,9 @@ function loadProducts() {
                 .getElementById("products-table")
                 .getElementsByTagName("tbody")[0];
 
+            // Clear the table body
+            tableBody.innerHTML = '';
+
             data.forEach((product) => {
                 console.log(product);
                 var newRow = tableBody.insertRow();
@@ -44,7 +50,7 @@ function loadProducts() {
                 var categorieCell = newRow.insertCell(3);
                 var gemTypeCell = newRow.insertCell(4);
                 var collectionCell = newRow.insertCell(5);
-                var editCell = newRow.insertCell(6);
+                var deleteCell = newRow.insertCell(6);
 
                 nameCell.textContent = product.product_name;
                 priceCell.textContent = product.price;
@@ -52,13 +58,34 @@ function loadProducts() {
                 categorieCell.textContent = product.category_name;
                 gemTypeCell.textContent = product.gem_name;
                 collectionCell.textContent = product.collection_name;
-                editCell.innerHTML =
-                    "<button onclick='editFunction(" + product.id + ")'>Edit</button>";
+                deleteCell.innerHTML =
+                    "<button onclick='deleteProduct(" + product.product_id + ")'>Delete</button>";
             });
         })
         .catch((error) => {
             console.error("Error:", error);
         });
+}
+
+function deleteProduct(id) {
+    fetch(`/api/product/delete/${id}`, {
+        method: 'POST'
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+        })
+        .then(() => {
+            alert("Product deleted successfully!");
+
+        })
+        .catch(error => {
+            console.error('There was an error:', error);
+        });
+
+    loadProducts();
+
 }
 
 window.onload = loadProducts;
