@@ -13,6 +13,7 @@ class ProductModel
 
     public function getAllProducts()
     {
+
         $stmt = $this->pdo->prepare("SELECT * FROM product");
         $stmt->execute();
 
@@ -31,9 +32,9 @@ class ProductModel
 
     public function createProduct(array $data): bool
     {
-        $sql = 'INSERT INTO product (product_name, price, description, image, category_id, gem_id) VALUES (?, ?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO product (product_name, price, description, image, category_id, gem_id, collection_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([$data['name'], $data['price'], $data['description'], $data['image'], $data['category-select'], $data['type-select']]);
+        return $stmt->execute([$data['name'], $data['price'], $data['description'], $data['image'], $data['category-select'], $data['type-select'], $data['collection-select']]);
     }
 
     public function getProductById(int $id)
@@ -42,6 +43,14 @@ class ProductModel
         $stmt->execute([$id]);
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function deleteProductById(int $id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM product WHERE product_id = ?");
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() > 0;
     }
 
 
