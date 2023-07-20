@@ -58,7 +58,7 @@ function updateProductContainer(products) {
       productCard.classList.add("big");
     }
 
-    productCard.onclick = product_page; // Assuming product_page is a function you've defined
+    productCard.onclick = () => product_page(product.product_id);
 
     const productImage = product.image
       ? `/img/${product.image}`

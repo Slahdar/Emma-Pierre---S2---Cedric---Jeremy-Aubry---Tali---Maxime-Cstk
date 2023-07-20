@@ -90,8 +90,8 @@ function panier() {
 function product_list() {
   window.location.href = "product_list.html";
 }
-function product_page() {
-  window.location.href = "product_page.html";
+function product_page(id) {
+  window.location.href = `/product/${id}`;
 }
 
 function precieuse() {
