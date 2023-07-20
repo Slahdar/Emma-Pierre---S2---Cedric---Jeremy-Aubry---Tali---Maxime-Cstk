@@ -1,0 +1,30 @@
+{% include 'header.twig' %}
+
+{% block content %}
+{# <div id="page-container"> #}
+    <section>
+        {% if articles is not empty %}
+            <h2>Derniers articles de blog</h2>
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <img src={{ article.image }}>
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.content }}</p>
+                        <p>Date de publication : {{ article.published_date }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <div class="text-center my-5">
+            <h2>Il n'y a pas d'article pour le moment</h2>
+            </div>
+        {% endif %}
+        
+        </section>
+    {# </div> #}
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.twig' %}
+{% endblock %}
