@@ -105,3 +105,100 @@ function impertinente() {
 function unique() {
   window.location.href = "collection-unique.html";
 }
+
+window.onload = refreshCart;
+
+function refreshCart() {
+  fetch("/api/cart", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      const dataArray = Object.values(data);
+      dataArray.forEach((element) => {
+        const productCard = document.createElement("div");
+        productCard.classList.add("cart-item");
+
+        productCard.innerHTML = `
+    <div class="item-image-container">
+        <img src="/img/${element.image}" alt="${element.product_name}">
+    </div>
+    <div class="cart-item-info">
+        <p>${element.product_name}</p>
+        <p>${element.price}€</p>
+        <div class="cart-item-btns">
+            <p>Quantité : ${element.qty}</p>
+            <p style="cursor:pointer;" onclick="removeItem(${element.product_id})">Supprimer</p>
+        </div>
+    </div>`;
+        cartItems.appendChild(productCard);
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+
+  fetch("/api/cart/total", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const total = document.querySelector(".cart-total>p");
+
+      total.innerHTML = data + "€";
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function removeItem(id) {
+  const cartItems = document.getElementById("cart-items");
+  cartItems.innerHTML = "";
+  fetch(`/api/cart/delete/${id}`, {
+    method: "POST",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    })
+    .then(() => {
+      refreshCart();
+      //alert("Product deleted successfully!");
+    })
+    .catch((error) => {
+      console.error("There was an error:", error);
+    });
+}
+
+function emptyCart() {
+  fetch(`/api/cart/deleteall`, {
+    method: "GET",
+  })
+    .then((response) => {
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    })
+    .then(() => {
+      const cartItems = document.getElementById("cart-items");
+      cartItems.innerHTML = "";
+      const total = document.querySelector(".cart-total>p");
+
+      total.innerHTML = "0€";
+      //alert("Product deleted successfully!");
+    })
+    .catch((error) => {
+      console.error("There was an error:", error);
+    });
+}

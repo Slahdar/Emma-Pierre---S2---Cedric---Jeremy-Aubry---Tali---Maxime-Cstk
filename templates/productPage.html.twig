@@ -12,7 +12,43 @@
 {% include 'header.twig' %}
 <link rel="stylesheet" href="/css/product-list.css">
 
-<button id="addCart" value="{{ product.product_id }}">Ajouter au panier</button>
+        <div id="product-wrapper">
+
+            <div id="product">
+                <div id="more-images">
+                    <i class="fa-solid fa-angle-up arrows"></i>
+                    <div class="small-img-wrapper">
+                        <img src="assets/img/neck_necklace.jpeg" alt="">
+                    </div>
+                    <div class="small-img-wrapper">
+                        <img src="assets/img/neck_necklace.jpeg" alt="">
+                    </div>
+                    <div class="small-img-wrapper">
+                        <img src="assets/img/neck_necklace.jpeg" alt="">
+                    </div>
+                    <i class="fa-solid fa-angle-down arrows"></i>
+                </div>
+                <div id="product-image">
+                    <div id="image-wrapper">
+                        <img src="/img/{{ product.image }}" alt="">
+                    </div>
+                </div>
+                <div id="product-info">
+                    <h1>{{ product.product_name }}</h1>
+                    <p>{{ product.price }}€</p>
+                    <p>{{ product.description }}</p>
+                    <div class="counter">
+                        <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                        <input id="qty_product" type="text" value="1">
+                        <span class="up" onClick='increaseCount(event, this)'>+</span>
+                    </div>
+                    <button class="cta" id="addCart" value="{{ product.product_id }}"><img id="cart-btn" class="pe-2"
+                            src="/icon/ph_handbag.png"></i>Ajouter au
+                        panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -20,6 +56,6 @@
 {% include 'footer.twig' %}
 
 <script src="/js/caroussel-script.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/product-count.js"></script>
-    <script src = "/js/product-page.js"></script>
+<script src="/js/script.js"></script>
+<script src="/js/product-count.js"></script>
+<script src = "/js/product-page.js"></script>

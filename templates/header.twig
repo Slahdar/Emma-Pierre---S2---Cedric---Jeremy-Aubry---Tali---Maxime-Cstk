@@ -51,38 +51,10 @@
 
                 <div class="icon-container">
                     
-                <img id="cart-btn" src="/icon/cart.svg">
+                <img style="cursor:pointer;" id="cart-btn" src="/icon/cart.svg">
                 </div>
                 
-                <div id="cart">
-                <h3>Mon panier (1)</h3>   
-                    <div id="cart-items">
-                        <div class="cart-item">
-                            <div class="item-image-container">
-                                <img src="/img/earings_profil_2.webp" alt="">
-                            </div>
-                            <div class="cart-item-info">
-                                <p>Boucle d'oreille</p>
-                                <p>50€</p>
-                                <div class="cart-item-btns">
-                                    <p>Quantité : 1</p>
-                                    <p id="cart-btn-modif">Modifier</p>
-                                    <p>Supprimer</p>
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <div class="cart-checkout">
-                        <div class="cart-total">
-                            <h2>Total</h2>
-                            <p style="margin-top:30px">50€</p>
-                        </div>   
-                        <button style="width:100%" onclick="panier()" class="cta" id="">Acceder au panier</button>   
-                    </div>
-                </div>
+                {% include 'cart.twig' %}
             </div>
         </nav>
     </div>

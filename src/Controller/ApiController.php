@@ -4,15 +4,18 @@ namespace App\Controller;
 
 use App\Routing\Attribute\Route;
 use App\Models\ProductModel;
+use App\Models\CartModel;
 use Exception;
 
 class ApiController extends AbstractController
 {
     private $productModel;
+    private $cartModel;
 
-    public function __construct(ProductModel $productModel)
+    public function __construct(ProductModel $productModel, CartModel $cartModel)
     {
         $this->productModel = $productModel;
+        $this->cartModel = $cartModel;
     }
     #[Route("/api/products", name: "api_products_post", httpMethods: ["POST"])]
     public function postProduct(): string
@@ -65,6 +68,7 @@ class ApiController extends AbstractController
     }
 
 
+
     #[Route("/api/products", name: "api_products_get")]
     public function getProducts(): string
     {
@@ -76,6 +80,44 @@ class ApiController extends AbstractController
         $products = $this->productModel->getAllProducts();
         return json_encode($products);
     }
+
+    #[Route("/api/cart", name: "api_products_get")]
+    public function getCart(): string
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        $cartItems = $this->cartModel->getCartItems();
+        return json_encode($cartItems);
+    }
+
+    #[Route("/api/cart/total", name: "api_cardtotal_get")]
+    public function getCartTotal(): string
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        $cartTotal = $this->cartModel->getTotal();
+        return json_encode($cartTotal);
+    }
+
+
+    #[Route("/api/cart/deleteall", name: "api_empty_cart_get")]
+    public function emptyCart(): string
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        unset($_SESSION['Cart']);
+        return json_encode("cart is empty");
+    }
+
     #[Route("/api/productsbis", name: "api_products_get_bis")]
     public function getAllProductsBis(): string
     {
@@ -111,15 +153,54 @@ class ApiController extends AbstractController
         }
     }
 
-    #[Route("/api/addCart/{id}", name: "api_addCart_post", httpMethods: ["GET", "POST"])]
-    public function addItemToCart(int $id)
+    #[Route("/api/addCart/{id}/{qty}", name: "api_addCart_post", httpMethods: ["POST"])]
+    public function addItemToCart(int $id, int $qty)
     {
         if (!isset($_SESSION['Cart'])) {
             $_SESSION['Cart'] = [];
         }
-        array_push($_SESSION['Cart'], ['id' => $id, 'qty' => 1]);
+
+        // Vérifier si le produit avec l'ID donné existe déjà dans le panier
+        $productIndex = -1;
+        foreach ($_SESSION['Cart'] as $index => $item) {
+            if ($item['id'] === $id) {
+                $productIndex = $index;
+                break;
+            }
+        }
+
+        // Si le produit existe déjà, mettre à jour la quantité en l'additionnant
+        if ($productIndex !== -1) {
+            $_SESSION['Cart'][$productIndex]['qty'] += $qty;
+        } else {
+            // Si le produit n'existe pas encore, l'ajouter au panier
+            $_SESSION['Cart'][] = ['id' => $id, 'qty' => $qty];
+        }
 
         // Renvoyer une réponse JSON indiquant le succès de l'opération
         return json_encode(['success' => true]);
+    }
+
+    #[Route("/api/cart/delete/{id}", name: "api_cart_delete", httpMethods: ["GET", "POST"])]
+    public function deleteProduct(int $id): string
+    {
+        // Set the Content-Type header
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);  // Method Not Allowed
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        foreach ($_SESSION['Cart'] as $key => $product) {
+            if ($product['id'] == $id) {  // Corrected 'product_id' to 'id'
+                unset($_SESSION['Cart'][$key]);
+            }
+        }
+
+        // Re-index the array
+        $_SESSION['Cart'] = array_values($_SESSION['Cart']);
+
+        return json_encode(['message' => 'Product deleted successfully']);
     }
 }

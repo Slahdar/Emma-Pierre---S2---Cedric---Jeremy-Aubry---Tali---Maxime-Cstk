@@ -15,7 +15,6 @@ use App\Routing\ArgumentResolver;
 use Symfony\Component\Dotenv\Dotenv;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use App\Models\LoginModel;
 
 
 $dotenv = new Dotenv();
@@ -64,7 +63,8 @@ $serviceContainer
   ->set(App\Models\GemTypeModel::class, new App\Models\GemTypeModel($pdo))
   ->set(App\Models\CollectionModel::class, new App\Models\CollectionModel($pdo))
   ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo))
-  ->set(App\Models\RegisterModel::class, new App\Models\RegisterModel($pdo));
+  ->set(App\Models\RegisterModel::class, new App\Models\RegisterModel($pdo))
+  ->set(App\Models\CartModel::class, new App\Models\CartModel($pdo));
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();
