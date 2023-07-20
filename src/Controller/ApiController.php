@@ -203,7 +203,7 @@ class ApiController extends AbstractController
     }
 
     #[Route("/api/cart/delete/{id}", name: "api_cart_delete", httpMethods: ["GET", "POST"])]
-    public function deleteProduct(int $id): string
+    public function deleteCartProduct(int $id): string
     {
         // Set the Content-Type header
         header('Content-Type: application/json');
