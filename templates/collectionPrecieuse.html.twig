@@ -1,0 +1,95 @@
+{% extends 'header.html.twig' %}
+
+{% block content %}
+
+<div id="page-container">
+        <div class="row section-content">
+            <div class="container-collec row col-12 col-sm-6">
+                <div class="container-text-collec">
+                    <h3>“Chaque pièce de notre collection de bijoux précieux est une œuvre d'art unique, conçue pour
+                        inspirer l'émerveillement et capturer l'essence de l'élégance intemporelle."</h3>
+                    <h3 style="align-self: flex-end;">La fondatrice</h3>
+                </div>
+            </div>
+            <img src="/img/hand_bracket.webp" alt="" class="img-collection-header col-12 col-sm-6">
+
+        </div>
+
+        <div class="row section-content">
+            <h2 class="text-center">Nos collections Précieuses</h2>
+            <hr class="collec-hr">
+            <div class="cat-container">
+
+                <div onclick="product_list()">
+                    <img src="/img/piercing_zoom.webp" alt="boucle">
+                    <h3 class="white-title">Family</h3>
+                </div>
+                <div onclick="product_list()">
+                    <img src="/img/necklace_zoom.jpg" alt="boucle">
+                    <h3 class="white-title">Trilogy</h3>
+                </div>
+                <div onclick="product_list()">
+                    <img src="/img/hand_bracket.webp" alt="boucle">
+                    <h3 class="white-title">Rana</h3>
+                </div>
+
+                <div onclick="product_list()">
+                    <img src="/img/naturelle.webp" alt="boucle">
+                    <h3 class="white-title">Pearl</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row section-content">
+
+            <div style="text-align: center; align-self: center; padding: 0 4em !important;">
+                <h3> Nos collections précieuses : bijoux artisanaux français de haute qualité</h3>
+                <p>Chez Emma Pierre, nous sommes fiers de présenter notre collection de bijoux artisanaux précieux,
+                    conçus avec soin et fabriqués en France. Nous utilisons des matériaux de la plus haute qualité pour
+                    créer des bijoux qui résisteront à l'épreuve du temps et pourront être transmis de génération en
+                    génération.</p>
+                <p>Notre collection de bijoux précieux comprend des pièces uniques, toutes fabriquées à la main par
+                    notre équipe d'artisans talentueux. Chaque bijou est conçu pour mettre en valeur la beauté naturelle
+                    des pierres précieuses et semi-précieuses, ainsi que pour ajouter une touche de sophistication à
+                    toute tenue.</p>
+                <p>Nous offrons une large sélection de bijoux précieux, allant des bagues en diamant aux colliers en
+                    perles de culture en passant par les boucles d'oreilles en or. Notre collection comprend également
+                    des bijoux en pierres précieuses de toutes les couleurs, y compris l'émeraude, le saphir, le rubis
+                    et bien d'autres encore.</p>
+                <p>Nous sommes fiers de travailler en étroite collaboration avec nos clients pour créer des bijoux
+                    personnalisés qui reflètent leur style personnel et leur histoire unique. Nous sommes également à
+                    votre disposition pour toute réparation ou entretien de bijoux précieux que vous pourriez avoir
+                    besoin.</p>
+                <p>Nous sommes convaincus que notre collection de bijoux précieux est la meilleure en termes de qualité,
+                    de design et d'artisanat. Nous espérons que vous apprécierez notre collection autant que nous aimons
+                    la créer.</p>
+                <button onclick="product_list()" class="collec-btn">Voir la collection</button>
+            </div>
+        </div>
+
+        <div class="row section-content picture_collec">
+            <div class="col-12 col-sm-6" style="max-height: 515px; display: flex;">
+                <img src="/img/piercing_zoom.webp" class="img-blog-article-bigger">
+            </div>
+            <div class="col-12 col-sm-6 max-height: 550px;">
+                <div class="row" style="height: 50%; max-height: 550px; row-gap: 15px;">
+                    <div class="col-12" style="align-self: center;">
+                        <img src="/img/tendance.jpeg" class="img-blog-article">
+                    </div>
+                    <div class="col-12" style="align-self: center;">
+                        <img src="/img/hand_bracket.webp" class="img-blog-article">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.html.twig' %}
+
+{% endblock %}

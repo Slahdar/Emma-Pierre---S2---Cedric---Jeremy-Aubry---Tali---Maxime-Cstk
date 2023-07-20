@@ -1,59 +1,51 @@
 <script src="/js/productList.js"></script>
 
-{% include 'header.twig' %}
+{% include 'header.html.twig' %}
 <link rel="stylesheet" href="/css/product-list.css">
 
+<div id="page-container">
+	<div id="product-wrapper">
+		<div id="filter-wrapper">
+			<div id="filters">
+				<div class="filter-cat">
+					<div class="filter-title">
+						<p>Collection</p>
+						<i class="fa-solid fa-angle-down"></i>
+					</div>
+					{% for item in collections %}
+						<input type="checkbox" id="{{ item.collection_id }}" name="collections[]" value="{{ item.collection_id }}">
+						<label for="{{ item.collection_id }}">{{ item.collection_name }}</label><br>
+					{% endfor %}
+				</div>
+				<div class="filter-cat">
+					<div class="filter-title">
+						<p>Type de pierre</p>
+						<i class="fa-solid fa-angle-down"></i>
+					</div>
+					{% for item in gemTypes %}
+						<input type="checkbox" id="{{ item.gem_id }}" name="gemTypes[]" value="{{ item.gem_id }}">
+						<label for="{{ item.gem_id }}">{{ item.gem_name }}</label><br>
+					{% endfor %}
+				</div>
 
-<div id="product-wrapper">
-    <div id="filter-wrapper">
-        <div id="filters">
-            <div class="filter-cat">
-                <div class="filter-title">
-                    <p>Collection</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
-                {% for item in collections %}
-                <input type="checkbox" id="{{ item.collection_id }}" name="collections[]"
-                    value="{{ item.collection_id }}">
-                <label for="{{ item.collection_id }}">{{ item.collection_name }}</label><br>
-                {% endfor %}
-            </div>
-            <div class="filter-cat">
-                <div class="filter-title">
-                    <p>Type de pierre</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
-                {% for item in gemTypes %}
-                <input type="checkbox" id="{{ item.gem_id }}" name="gemTypes[]" value="{{ item.gem_id }}">
-                <label for="{{ item.gem_id }}">{{ item.gem_name }}</label><br>
-                {% endfor %}
-            </div>
+				<div class="filter-cat">
+					<div class="filter-title">
+						<p>Catégories</p>
+						<i class="fa-solid fa-angle-down"></i>
+					</div>
+					{% for item in categories %}
+						<input type="checkbox" id="{{ item.category_id }}" name="categories[]" value="{{ item.category_id }}">
+						<label for="{{ item.category_id }}">{{ item.category_name }}</label><br>
+					{% endfor %}
+				</div>
 
-            <div class="filter-cat">
-                <div class="filter-title">
-                    <p>Catégories</p>
-                    <i class="fa-solid fa-angle-down"></i>
-                </div>
-                {% for item in categories %}
-                <input type="checkbox" id="{{ item.category_id }}" name="categories[]" value="{{ item.category_id }}">
-                <label for="{{ item.category_id }}">{{ item.category_name }}</label><br>
-                {% endfor %}
-            </div>
-
-        </div>
-    </div>
-    <div class="grid-wrapper">
-
-
-    </div>
+			</div>
+		</div>
+		<div class="grid-wrapper"></div>
+	</div>
 </div>
 
-
-
-
-
-
-{% include 'footer.twig' %}
+{% include 'footer.html.twig' %}
 
 
 <script src="/js/caroussel-script.js"></script>

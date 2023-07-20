@@ -22,7 +22,7 @@ class RegisterController extends AbstractController
     #[Route("/register", name: "registerPage")]
     public function register(): string
     {
-        return $this->twig->render('register.twig');
+        return $this->twig->render('register.html.twig');
     }
 
     #[Route("/register", name: "registerProcess", httpMethods: ['POST'])]
@@ -37,7 +37,7 @@ class RegisterController extends AbstractController
 
         if ($userExists) {
             $errorMessage = "Nom d'utilisateur ou adresse e-mail déjà utilisé.";
-            return $this->twig->render('register.twig', ['register_error' => $errorMessage]);
+            return $this->twig->render('register.html.twig', ['register_error' => $errorMessage]);
         }
 
         // Enregistrer l'utilisateur

@@ -34,15 +34,15 @@ class LoginController extends AbstractController
                 exit;
             } else {
                 $errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
-                return $this->twig->render('login.twig', ['login_error' => $errorMessage]);
+                return $this->twig->render('login.html.twig', ['login_error' => $errorMessage]);
             }
         }
 
         if (isset($_SESSION['user_id'])) {
-            return $this->twig->render('userAccount.twig');
+            return $this->twig->render('userAccount.html.twig');
         } else {
             // Affichage du formulaire de connexion
-            return $this->twig->render('login.twig');
+            return $this->twig->render('login.html.twig');
         }
     }
 

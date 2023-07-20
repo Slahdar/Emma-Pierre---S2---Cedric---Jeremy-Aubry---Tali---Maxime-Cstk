@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mon site</title>
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/base.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/navbar-style.css">
+		<link rel="stylesheet" href="/css/caroussel-style.css">
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="/css/tabs2-style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+	</head>
+	<body>
+
+		<header id="header-container">
+			<div id="block-1">
+				<nav class="menu-left" id="head-cred">
+					<div class="switch">
+						<input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+						<label for="language-toggle"></label>
+						<span class="on">FR</span>
+						<span class="off">EN</span>
+					</div>
+				</nav>
+				<div id="head-burger">
+					<i class="fa-solid fa-bars" id="burger"></i>
+				</div>
+				<div class="logo-container">
+					<a href="/">
+						<img src="/img/logoNoir.png" class="logo">
+					</a>
+				</div>
+				<nav class="menu-right">
+
+					<div class="icons-container">
+						<div class="icon-container">
+
+							<img src="/icon/iconoir_search.svg">
+						</div>
+
+						<div class="icon-container">
+
+							<a href="/login">
+								<img src="/icon/user.svg">
+							</a>
+
+						</div>
+
+						<div class="icon-container">
+
+							<img id="cart-btn" src="/icon/cart.svg">
+						</div>
+
+						<div id="cart">
+							<h3>Mon panier (1)</h3>
+							<div id="cart-items">
+								<div class="cart-item">
+									<div class="item-image-container">
+										<img src="/img/earings_profil_2.webp" alt="">
+									</div>
+									<div class="cart-item-info">
+										<p>Boucle d'oreille</p>
+										<p>50€</p>
+										<div class="cart-item-btns">
+											<p>Quantité : 1</p>
+											<p id="cart-btn-modif">Modifier</p>
+											<p>Supprimer</p>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+							<div class="cart-checkout">
+								<div class="cart-total">
+									<h2>Total</h2>
+									<p style="margin-top:30px">50€</p>
+								</div>
+								<button style="width:100%" onclick="panier()" class="cta" id="">Acceder au panier</button>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<div id="block-2">
+				<nav id="menu">
+					<a href="/a-propos">A propos</a>
+					<a href="javascript:void(0)" id="first-div">Nos Collections</a>
+					<div id="block-3">
+						<div class="items">
+							<a class="imgheader" href="/collection-precieuse">
+								<div class="item-image precieuses"></div>
+							</a>
+							<a class="item-link" href="product_list.html">Précieuses</a>
+							<div class="item-sub-links">
+								<a href="product_list.html">Bracelets</a>
+								<a href="product_list.html">Colliers</a>
+								<a href="product_list.html">Boucles d'oreilles</a>
+
+							</div>
+						</div>
+						<div class="items">
+							<a class="imgheader" href="/collection-impertinente">
+								<div class="item-image impertinentes"></div>
+							</a>
+
+							<a class="item-link" href="product_list.html">Impertinentes</a>
+
+							<div class="item-sub-links">
+								<a href="product_list.html">Bracelets</a>
+								<a href="product_list.html">Colliers</a>
+								<a href="product_list.html">Boucles d'oreilles</a>
+
+							</div>
+						</div>
+						<div class="items">
+							<a class="imgheader" href="/collection-unique">
+								<div class="item-image unique"></div>
+							</a>
+							<a class="item-link" href="product_list.html">Unique</a>
+							<div class="item-sub-links">
+								<a href="product_list.html">Bracelets</a>
+								<a href="product_list.html">Colliers</a>
+								<a href="product_list.html">Boucles d'oreilles</a>
+
+							</div>
+						</div>
+					</div>
+					<a href="/blog">Blog</a>
+					<a href="/contact">Contact</a>
+					<div class="switch" id="btnswitchln" style="display:none">
+						<input id="language-toggle2" class="check-toggle check-toggle-round-flat" type="checkbox">
+						<label for="language-toggle"></label>
+						<span class="on">FR</span>
+						<span class="off">EN</span>
+					</div>
+				</nav>
+			</div>
+		</header>
+		{% block content %}{% endblock %}
+
+		{% block footer %}{% endblock %}
+		
+		{% block script %}{% endblock %}
+
+	</body>
+</html>

@@ -1,0 +1,25 @@
+{% include 'header.html.twig' %}
+<div id="page-container">
+	{% block content %}
+		<h1>Connexion</h1>
+
+		<form method="POST" action="/login">
+			<div>
+				<label for="username">Nom d'utilisateur</label>
+				<input type="text" id="username" name="username" required>
+			</div>
+			<div>
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" name="password" required>
+			</div>
+			<button type="submit">Se connecter</button>
+		</form>
+		<a href="/register">Pas encore de compte ? Enregistrez-vous !</a>
+
+		{% if login_error is defined %}
+			<p class="alert alert-danger">{{ login_error }}</p>
+		{% endif %}
+
+	{% endblock %}
+</div>
+{% include 'footer.html.twig' %}
