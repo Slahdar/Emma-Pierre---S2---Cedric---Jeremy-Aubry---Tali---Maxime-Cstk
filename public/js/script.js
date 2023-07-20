@@ -95,15 +95,15 @@ function product_page(id) {
 }
 
 function precieuse() {
-  window.location.href = "collection-precieuse.html";
+  window.location.href = "/collection-precieuse";
 }
 
 function impertinente() {
-  window.location.href = "collection-impertinente.html";
+  window.location.href = "/collection-impertinente";
 }
 
 function unique() {
-  window.location.href = "collection-unique.html";
+  window.location.href = "/collection-unique";
 }
 
 window.onload = refreshCart();
