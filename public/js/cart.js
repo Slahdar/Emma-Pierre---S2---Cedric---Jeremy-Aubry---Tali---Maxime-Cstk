@@ -68,5 +68,46 @@ function removeItem2(id) {
     });
 }
 
+function placeOrder() {
+    event.preventDefault(); 
+    
+
+    fetch("/api/order", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw response;
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+        } else if (data.error) {
+            alert(data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Raw error object:", error);  // Log the entire error object for debugging
+    
+        if (error && typeof error.json === 'function') {
+            error.json().then(errData => {
+                alert(errData.error);
+            }).catch(() => {
+                alert("An error occurred while parsing the response.");
+            });
+        } else if (error && error.status) {
+            alert("HTTP Error: " + error.status + " " + error.statusText);
+        } else {
+            alert("An unknown error occurred.");
+        }
+    });
+    
+}
+
 window.onload = displayCart;
 

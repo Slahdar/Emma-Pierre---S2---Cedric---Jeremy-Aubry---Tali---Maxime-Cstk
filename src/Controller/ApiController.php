@@ -4,18 +4,21 @@ namespace App\Controller;
 
 use App\Routing\Attribute\Route;
 use App\Models\ProductModel;
+use App\Models\OrderModel;
 use App\Models\CartModel;
 use Exception;
 
 class ApiController extends AbstractController
 {
     private $productModel;
+    private $orderModel;
     private $cartModel;
 
-    public function __construct(ProductModel $productModel, CartModel $cartModel)
+    public function __construct(ProductModel $productModel, CartModel $cartModel, OrderModel $orderModel)
     {
         $this->productModel = $productModel;
         $this->cartModel = $cartModel;
+        $this->orderModel = $orderModel;
     }
     #[Route("/api/products", name: "api_products_post", httpMethods: ["POST"])]
     public function postProduct(): string
@@ -23,6 +26,11 @@ class ApiController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);  // Method Not Allowed
             return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        if ($_SESSION['status'] == 1) {
+            http_response_code(401);  
+            return json_encode(['error' => 'unauthorised']);
         }
 
         $productData = [
@@ -127,6 +135,11 @@ class ApiController extends AbstractController
             return json_encode(['error' => 'Invalid HTTP method']);
         }
 
+        if ($_SESSION['status'] == 1) {
+            http_response_code(401);  
+            return json_encode(['error' => 'unauthorised']);
+        }
+
         $products = $this->productModel->getAllProductsBis();
         return json_encode($products);
     }
@@ -144,6 +157,8 @@ class ApiController extends AbstractController
             http_response_code(405);  // Method Not Allowed
             return json_encode(['error' => 'Invalid HTTP method']);
         }
+
+        
 
         $product = $this->productModel->getProductById($id);
         if ($product) {
@@ -163,6 +178,11 @@ class ApiController extends AbstractController
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);  // Method Not Allowed
             return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        if ($_SESSION['status'] == 1) {
+            http_response_code(401);  
+            return json_encode(['error' => 'unauthorised']);
         }
 
         $product = $this->productModel->deleteProductById($id);
@@ -219,9 +239,53 @@ class ApiController extends AbstractController
             }
         }
 
-        // Re-index the array
+        
         $_SESSION['Cart'] = array_values($_SESSION['Cart']);
 
         return json_encode(['message' => 'Product deleted successfully']);
     }
-}
+
+
+    #[Route("/api/order", name: "api_order", httpMethods: ["POST"])]
+    public function doTheOrder()
+    {
+       
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);  
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+        $user_id = $_SESSION['user_id'];
+        $cart = $this->cartModel->getCartItems();
+        
+        
+        $order = $this->orderModel->doOrder($user_id,$cart);
+        if ($order) {
+            unset($_SESSION['Cart']);
+            return json_encode(['message' => 'order was sucessfull']);
+        } else {
+            http_response_code(404);  
+            return json_encode(['error' => 'error processing order']);
+        }
+    }
+
+    #[Route("/api/orders", name: "api_get_orders", httpMethods: ["GET","POST"])]
+    public function getTheOrders()
+    {
+       
+        if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+            http_response_code(405);  
+            return json_encode(['error' => 'Invalid HTTP method']);
+        }
+
+        if ($_SESSION['status'] == 1) {
+            http_response_code(401);  
+            return json_encode(['error' => 'unauthorised']);
+        }
+
+        $orders = $this->orderModel->getAllOrders();
+        return json_encode($orders);
+    }
+
+   }

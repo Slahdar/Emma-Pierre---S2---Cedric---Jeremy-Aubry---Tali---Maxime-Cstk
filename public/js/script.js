@@ -110,6 +110,7 @@ window.onload = refreshCart();
 
 function refreshCart() {
   console.log('executing refresh cart');
+  
   fetch("/api/cart", {
     method: "GET",
     headers: {
@@ -119,42 +120,42 @@ function refreshCart() {
     .then((response) => response.json())
     .then((data) => {
       const cartItems = document.getElementById("cart-items");
-      cartItems.innerHTML = "";
       const dataArray = Object.values(data);
+      
+      let totalSum = 0; // Initialize total sum
+
+      const fragment = document.createDocumentFragment();
+
       dataArray.forEach((element) => {
         const productCard = document.createElement("div");
         productCard.classList.add("cart-item");
 
         productCard.innerHTML = `
-    <div class="item-image-container">
-        <img src="/img/${element.image}" alt="${element.product_name}">
-    </div>
-    <div class="cart-item-info">
-        <p>${element.product_name}</p>
-        <p>${element.price}€</p>
-        <div class="cart-item-btns">
-            <p>Quantité : ${element.qty}</p>
-            <p style="cursor:pointer;" onclick="removeItem(${element.product_id})">Supprimer</p>
+        <div class="item-image-container">
+            <img src="/img/${element.image}" alt="${element.product_name}">
         </div>
-    </div>`;
-        cartItems.appendChild(productCard);
+        <div class="cart-item-info">
+            <p>${element.product_name}</p>
+            <p>${element.price}€</p>
+            <div class="cart-item-btns">
+                <p>Quantité : ${element.qty}</p>
+                <p style="cursor:pointer;" onclick="removeItem(${element.product_id})">Supprimer</p>
+            </div>
+        </div>`;
+        
+        fragment.appendChild(productCard);
+        
+        // Calculate total sum for each item in the cart
+        totalSum += parseFloat(element.price) * element.qty;
       });
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
 
-  fetch("/api/cart/total", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const total = document.querySelector(".cart-total>p");
+      cartItems.innerHTML = "";
+      cartItems.appendChild(fragment);
 
-      total.innerHTML = data + "€";
+      // Update the total displayed on the page
+      const totalElement = document.querySelector(".cart-total>p");
+      totalElement.innerHTML = totalSum.toFixed(2) + "€";  // toFixed(2) ensures 2 decimal places
+
     })
     .catch((error) => {
       console.error("Error:", error);
