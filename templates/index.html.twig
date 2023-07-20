@@ -1,29 +1,222 @@
 {% include 'header.twig' %}
 
-<h1>Hello Sciences-U</h1>
+{% block content %}
 
-<form id="new-product-form">
-    <label for="name">Product Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="price">Price:</label><br>
-    <input type="text" id="price" name="price"><br>
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description"></textarea><br>
-    <input type="submit" value="Submit">
-</form>
 
-<table id="products-table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Products will be inserted here -->
-    </tbody>
-</table>
+	<div class="header-img" style=" background-image: url('/img/imgAccueil.png');">
+		<div class="header-txt">
+			<h2>Bijoux artisanaux français</h2>
+			<p>Créatrice artisanale de colliers, bracelets et boucles d’oreilles avec des pierres précieuses et
+																																																																																		                impertinentes.</p>
+			<button onclick="product_list()" class="boutiqueBtn" style="background: none;">Boutique</button>
+		</div>
+	</div>
+	<div id="page-container">
 
-{% include 'footer.twig' %}
+		<div id="accueilFirstEl" class="row">
+			<div class="order-2 order-md-1">
+				<h2>Notre entreprise</h2>
+				<p>Notre vision est de créer des bijoux d'exception qui se transmettent de génération en génération, portant en eux l'héritage de l'artisanat français et l'amour du travail bien fait.</p>
+				<p>Nous sommes fiers de notre engagement envers la qualité, la durabilité et la personnalisation, en offrant à nos clients des bijoux uniques qui reflètent leur style et leur personnalité.
+				</p>
+				<p style="margin-bottom: 50px;">Nous sommes également soucieux de l'environnement et de notre impact sur la planète, en utilisant des matériaux durables et en soutenant les pratiques de fabrication éthiques.</p>
+				<a href="/a-propos">
+					<button class="boutiqueBtn">À propos</button>
+				</a>
+			</div>
+			<!-- .order-2 -->
+			<img src="/img/yellow_necklace_cropped.jpeg" style="width:210px; height:520px; margin: auto;" class="imgCenter imgResponsive order-1 order-md-2">
+			<img src="/img/earrings_profil.jpeg" style="width:410px; height:520px;margin: auto;" class="imgCenter order-3 order-md-3">
+		</div>
+		<!-- .row -->
 
+		<div class="row section-content">
+			<h2 class="text-center">Nos produits inconiques</h2>
+			<div class="tabs">
+				<div class="tab-2">
+					<label for="tab2-1">Nouveaux produits</label>
+					<input id="tab2-1" name="tabs-two" type="radio">
+					<div class="container-iconic">
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom_2.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Collier precieuse</p>
+								<p>75.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom_3.jpg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_profil.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Collier precieuse</p>
+								<p>75.00€</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-2">
+					<label for="tab2-2">Meilleures ventes</label>
+					<input id="tab2-2" name="tabs-two" type="radio" checked="checked">
+					<div class="container-iconic">
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/BJOUX1.png" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/BJOUX2.png" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/BJOUX3.png" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div class="product-card" onclick="product_page()">
+							<img src="/img/BJOUX4.png" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-2">
+					<label for="tab2-3">Collection unique</label>
+					<input id="tab2-3" name="tabs-two" type="radio">
+					<div class="container-iconic">
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_profil.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom_2.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom.jpeg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+						<div onclick="product_page()" class="product-card">
+							<img src="/img/earings_zoom_3.jpg" alt="boucle" class="img-product-card">
+							<div class="txt-product-card">
+								<p>Boucle d'oreille</p>
+								<p>50.00€</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row section-content">
+			<h2 class="text-center">Nos collections</h2>
+			<div class="collec-container">
+
+				<div onclick="precieuse()">
+					<img src="/img/catPrecieuse.png" alt="boucle">
+					<h3 class="white-title">Précieuses</h3>
+				</div>
+				<div onclick="impertinente()">
+					<img src="/img/catImpertiante.png" alt="boucle">
+					<h3 class="white-title">Impertinentes</h3>
+				</div>
+				<div onclick="unique()">
+					<img src="/img/ctUnique.png" alt="boucle">
+					<h3 class="white-title">Unique</h3>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row section-content">
+			<h2 class="text-center">Nos dernières actualités</h2>
+			<ul id="carousselAccueil">
+
+				<li>
+					<p>
+						<strong>Choisir le bijou parfait</strong>
+					</p>
+					<p>Choisir le bijou parfait peut sembler une tâche intimidante...</p>
+				</li>
+				<li>
+					<p>
+						<strong>Une saison des tendances</strong>
+					</p>
+					<p>Chaque saison apporte son lot de tendances en matière de...</p>
+				</li>
+				<li>
+					<p>
+						<strong>Les pierres naturelles</strong>
+					</p>
+					<p>
+						Les pierres naturelles comme l'améthyste, la turquoise...</p>
+				</li>
+
+
+			</ul>
+		</div>
+
+		<div class="row container-insta">
+			<div class="text-center d-flex flex-column" style="width:25%; margin: auto;">
+				<img src="/icon/instagram.svg" style="width: 64px;
+																																																																																																										                aspect-ratio: 1;
+																																																																																																										                align-self: center;">
+				<p style="font-size: 20px;">Instagram</p>
+			</div>
+			<div class="insta-img">
+				<img src="/img/imgInsta1.png">
+				<img src="/img/imgInsta2.png">
+				<img src="/img/imgInsta3.png">
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.twig' %}
+
+	<script src="/js/caroussel-script.js"></script>
+{% endblock %}
