@@ -1,0 +1,86 @@
+{% include 'header.twig' %}
+
+{% block content %}
+
+	{# <div id="page-container"> #}
+		<div class="row section-content">
+			<div class="container-collec row col-12 col-sm-6">
+				<div class="container-text-collec">
+					<h3>“Chaque pièce de notre collection de bijoux précieux est une œuvre d'art unique, conçue pour
+																		                        inspirer l'émerveillement et capturer l'essence de l'élégance intemporelle."</h3>
+					<h3 style="align-self: flex-end;">La fondatrice</h3>
+				</div>
+			</div>
+			<img src="/img/flower_jewel.jpeg" alt="" class="img-collection-header col-12 col-sm-6">
+
+		</div>
+
+		<div class="row cat_impertinente section-content">
+			<h2 class="text-center">Notre collection Unique</h2>
+			<hr class="collec-hr">
+
+
+		</div>
+		<div class="row section-content">
+
+			<div style="text-align: center; align-self: center; padding: 0 4em !important;">
+				<h3>Nos collections Unique : Chaque pièce est créée à la main</h3>
+				<p>Notre collection de bijoux uniques est le fruit d'un travail passionné et minutieux, réalisé avec
+															                    amour et dévouement. Chaque pièce est créée à la main avec une attention méticuleuse aux détails,
+															                    pour vous offrir des bijoux d'une qualité exceptionnelle et d'une beauté sans pareille. Les
+															                    matériaux soigneusement sélectionnés, qu'il s'agisse de pierres fines ou précieuses, sont choisis
+															                    pour leur qualité et leur éclat, afin de vous garantir des bijoux éblouissants qui ne laissent
+															                    personne indifférent.</p>
+				<p>
+					Chaque bijou raconte une histoire, reflète un style unique et incarne l'unicité de celle qui le
+															                    porte. Nous croyons que chaque femme mérite de se sentir spéciale et unique, c'est pourquoi nous
+															                    nous efforçons de créer des bijoux qui mettent en valeur la beauté naturelle de chacune, avec une
+															                    touche d'élégance intemporelle.
+
+				</p>
+				<p>
+					Notre collection variée offre une gamme de designs exclusifs,
+															                    allant des pièces classiques et intemporelles aux créations contemporaines et audacieuses, pour
+															                    satisfaire tous les goûts et toutes les occasions.</p>
+				<p>
+					En choisissant un bijou de notre collection, vous êtes assuré(e) de posséder une pièce d'exception,
+															                    chargée d'émotion et de signification, qui vous accompagnera tout au long de votre vie avec fierté
+															                    et élégance.
+
+				</p>
+				<p>Nous sommes fiers de notre travail artisanal, de notre engagement envers la
+															                    fabrication française et de notre dévouement à créer des bijoux uniques qui racontent une histoire
+															                    et marquent les esprits. Nous espérons que notre collection vous inspirera, vous émerveillera et
+															                    vous séduira, et que vous trouverez dans nos bijoux une façon de vous exprimer avec style et
+															                    originalité.
+				</p>
+				<p>Bienvenue dans l'univers enchanteur de notre marque, où chaque bijou est une œuvre
+															                    d'art unique, conçue pour vous accompagner dans les moments les plus précieux de votre vie.</p>
+
+				<button onclick="product_list()" class="collec-btn">Voir la collection</button>
+			</div>
+		</div>
+
+		<div class="row section-content picture_collec">
+			<div class="col-12 col-sm-6" style="max-height: 515px; display: flex;">
+				<img src="/img/piercing_zoom.webp" class="img-blog-article-bigger">
+			</div>
+			<div class="col-12 col-sm-6 max-height: 550px;">
+				<div class="row" style="height: 50%; max-height: 550px; row-gap: 15px;">
+					<div class="col-12" style="align-self: center;">
+						<img src="/img/tendance.jpeg" class="img-blog-article">
+					</div>
+					<div class="col-12" style="align-self: center;">
+						<img src="/img/hand_bracket.webp" class="img-blog-article">
+					</div>
+				</div>
+			</div>
+		</div>
+	{# </div> #}
+
+{% endblock %}
+
+{% block footer %}
+	{% include 'footer.twig' %}
+
+{% endblock %}
