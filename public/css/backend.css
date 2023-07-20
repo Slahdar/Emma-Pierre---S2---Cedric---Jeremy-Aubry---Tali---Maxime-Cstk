@@ -31,3 +31,16 @@
     flex-direction: column;
 
 }
+
+#products {
+    border: solid 1px grey;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+#orders {
+
+    border: solid 1px grey;
+    border-radius: 15px;
+    padding: 10px;
+}

@@ -3,50 +3,69 @@
 <h1>Back End </h1>
 
 <div class="centered">
+    <div id="products">
+        <h3>Produits</h3>
+        <table id="products-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Description</th>
+                    <th>categorie</th>
+                    <th>Gemtype</th>
+                    <th>collection</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    <table id="products-table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Description</th>
-                <th>categorie</th>
-                <th>Gemtype</th>
-                <th>collection</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+            </tbody>
+        </table>
 
-        </tbody>
-    </table>
+        <form id="new-product-form" enctype="multipart/form-data">
+            <label for="name">Product Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="price">Price:</label><br>
+            <input type="text" id="price" name="price"><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description"></textarea>
+            <select id="category-select" name="category-select">
+                {% for category in categories %}
+                <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                {% endfor %}
+            </select>
 
-    <form id="new-product-form" enctype="multipart/form-data">
-        <label for="name">Product Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="price">Price:</label><br>
-        <input type="text" id="price" name="price"><br>
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description"></textarea>
-<select id="category-select" name="category-select">
-    {% for category in categories %}
-    <option value="{{ category.category_id }}">{{ category.category_name }}</option>
-    {% endfor %}
-</select>
+            <select id="type-select" name="type-select">
+                {% for type in types %}
+                <option value="{{ type.gem_id }}">{{ type.gem_name }}</option>
+                {% endfor %}
+            </select>
 
-<select id="type-select" name="type-select">
-    {% for type in types %}
-    <option value="{{ type.gem_id }}">{{ type.gem_name }}</option>
-    {% endfor %}
-</select>
+            <select id="collection-select" name="collection-select">
+                {% for collection in collections %}
+                <option value="{{ collection.collection_id }}">{{ collection.collection_name }}</option>
+                {% endfor %}
+            </select>
+            <input type="file" id="image" name="image">
+            <input id="new-prod-submit" type="submit" value="Add +">
+        </form>
+    </div>
+    <div id="orders">
+        <h3>Commandes client</h3>
 
-<select id="collection-select" name="collection-select">
-    {% for collection in collections %}
-    <option value="{{ collection.collection_id }}">{{ collection.collection_name }}</option>
-    {% endfor %}
-</select>
-<input type="file" id="image" name="image">
-        <input id="new-prod-submit" type="submit" value="Add +">
-    </form>
+        <table id="products-table">
+            <thead>
+                <tr>
+                    <th>Nom client</th>
+                    <th>Detail produits</th>
+                    <th>adresse de livraison</th>
+                    <th>prix total</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
 </div>
 <script src="/js/main.js"></script>

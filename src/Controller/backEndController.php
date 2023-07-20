@@ -25,6 +25,7 @@ class backEndController extends AbstractController
     #[Route("/back", name: "backEnd")]
     public function home(): string
     {
+
         $categories = $this->CategoryModel->getAllCategories();
         $types = $this->gemTypeModel->getAllTypes();
         $collections = $this->collectionModel->getAllCollection();
