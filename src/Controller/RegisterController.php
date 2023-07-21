@@ -25,25 +25,36 @@ class RegisterController extends AbstractController
         return $this->twig->render('register.twig');
     }
 
-   /*  #[Route("/register", name: "registerProcess", httpMethods: ['POST'])]
+
+
+
+    #[Route("/register", name: "registerProcess", httpMethods: ['POST'])]
     public function registerProcess(): string
     {
         $username = $_POST['username'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-
-
+        $nomPrenom = $_POST['nomPrenom'];
+        $id_customer = $_POST['id_customer'];
+        // fields for customer information
+        $numero_rue = $_POST['numero_rue'];
+        $nom_rue = $_POST['nom_rue'];
+        $code_postal = $_POST['code_postal'];
+        $phone = $_POST['phone'];
+        $country = $_POST['country'];
+        $city = $_POST['city'];
 
         // Vérifier si l'utilisateur ou l'adresse e-mail existe déjà
         $userExists = $this->registerModel->checkUserExists($username, $email);
 
         if ($userExists) {
             $errorMessage = "Nom d'utilisateur ou adresse e-mail déjà utilisé.";
-            return $this->twig->render('register.html.twig', ['register_error' => $errorMessage]);
+            return $this->twig->render('register.twig', ['register_error' => $errorMessage]);
         }
 
-        // Enregistrer l'utilisateur
-        $this->registerModel->registerUser($username, $email, $password);
+        // Enregistrer l'utilisateur et customer
+        $this->registerModel->registerUserAndCustomer($username, $nomPrenom, $email, $password, $phone, $numero_rue, $nom_rue, $code_postal, $country, $city, $id_customer);
+
 
         $user = $this->loginModel->getUserByUsername($username);
         $this->loginModel->saveUserSession($user['user_id'], $user['statut']);
@@ -51,42 +62,5 @@ class RegisterController extends AbstractController
         // Rediriger l'utilisateur vers une autre page après l'inscription
         header('Location: /');
         exit;
-    } */
-
-
-#[Route("/register", name: "registerProcess", httpMethods: ['POST'])]
-public function registerProcess(): string
-{
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $nomPrenom = $_POST['nomPrenom'];
-    $id_customer = $_POST['id_customer'];
-    // fields for customer information
-    $numero_rue = $_POST['numero_rue'];
-    $nom_rue = $_POST['nom_rue'];
-    $code_postal = $_POST['code_postal'];
-    $phone = $_POST['phone'];
-    $country = $_POST['country'];
-    $city = $_POST['city'];
-
-    // Vérifier si l'utilisateur ou l'adresse e-mail existe déjà
-    $userExists = $this->registerModel->checkUserExists($username, $email);
-
-    if ($userExists) {
-        $errorMessage = "Nom d'utilisateur ou adresse e-mail déjà utilisé.";
-        return $this->twig->render('register.twig', ['register_error' => $errorMessage]);
     }
-
-    // Enregistrer l'utilisateur et customer
-    $this->registerModel-> registerUserAndCustomer($username, $nomPrenom, $email, $password, $phone, $numero_rue, $nom_rue, $code_postal, $country, $city, $id_customer);
-
-   
-    $user = $this->loginModel->getUserByUsername($username);
-    $this->loginModel->saveUserSession($user['user_id'], $user['statut']);
-
-    // Rediriger l'utilisateur vers une autre page après l'inscription
-    header('Location: /');
-    exit;
-}
 }

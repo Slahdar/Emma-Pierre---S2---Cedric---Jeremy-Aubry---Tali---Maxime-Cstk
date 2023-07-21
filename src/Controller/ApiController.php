@@ -234,7 +234,7 @@ class ApiController extends AbstractController
         }
 
         foreach ($_SESSION['Cart'] as $key => $product) {
-            if ($product['id'] == $id) {  // Corrected 'product_id' to 'id'
+            if ($product['id'] == $id) {
                 unset($_SESSION['Cart'][$key]);
             }
         }

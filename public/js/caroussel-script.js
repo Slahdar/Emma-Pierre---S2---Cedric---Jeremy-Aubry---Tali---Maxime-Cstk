@@ -8,14 +8,7 @@ $("#carousselAccueil > li")
   .eq(i + 1)
   .addClass("active")
   .css("left", "50%");
-// $("#carousselAccueil > li")
-//   .eq(i + 2)
-//   .addClass("active")
-//   .css("left", "50%");
-// $("#carousselAccueil > li")
-//   .eq(i + 3)
-//   .addClass("active")
-//   .css("left", "75%");
+
 
 setInterval(function () {
   $("#carousselAccueil > li").removeClass("active");
@@ -24,12 +17,7 @@ setInterval(function () {
   $("#carousselAccueil > li")
     .eq(i + 1)
     .css("transition-delay", "0.5s");
-  // $("#carousselAccueil > li")
-  //   .eq(i + 2)
-  //   .css("transition-delay", "0.75s");
-  // $("#carousselAccueil > li")
-  //   .eq(i + 3)
-  //   .css("transition-delay", "1s");
+
 
   if (i < max - 2) {
     i = i + 2;
@@ -48,13 +36,5 @@ setInterval(function () {
     .addClass("active")
     .css("transition-delay", "1.5s");
   $("#carousselAccueil > li");
-  //   .eq(i + 2)
-  //   .css("left", "50%")
-  //   .addClass("active")
-  //   .css("transition-delay", "1.75s");
-  // $("#carousselAccueil > li")
-  //   .eq(i + 3)
-  //   .css("left", "75%")
-  //   .addClass("active")
-  //   .css("transition-delay", "2s");
+
 }, timer);

@@ -9,7 +9,31 @@ btnAddCart.addEventListener("click", function () {
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
-        alert("Le produit a été ajouté au panier avec succès !");
+
+        const cartButton = document.getElementById('cart-btn');
+
+
+        cartButton.style.background = '#ff000082';
+        cartButton.style.borderRadius = '5px';
+        cartButton.style.padding = '5px';
+        cartButton.style.transition = 'background 0.3s, border-radius 0.3s, padding 0.3s';
+
+
+
+
+
+        function resetStyles() {
+          cartButton.style.background = '#ffff';
+          cartButton.style.borderRadius = '0';
+        }
+
+
+        cartButton.addEventListener('click', function () {
+
+
+          setTimeout(resetStyles, 300);
+        });
+
         refreshCart();
       } else {
         alert(

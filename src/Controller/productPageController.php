@@ -20,7 +20,7 @@ class productPageController extends AbstractController
     #[Route("/product/{id}", name: "product_page")]
     public function getProductPage(int $id): string
     {
-        print_r($_SESSION);
+
         if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
             http_response_code(405);  // Method Not Allowed
             return json_encode(['error' => 'Invalid HTTP method']);
