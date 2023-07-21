@@ -34,12 +34,12 @@ class RegisterModel
         try {
             // Requête pour insérer les informations du client dans la table customer
             $stmt_customer = $this->pdo->prepare('INSERT INTO customer (telephone, numero_rue, nom_rue, code_postal, pays, ville) VALUES (:telephone, :numero_rue, :nom_rue, :code_postal, :pays, :ville)');
-            $stmt_customer->execute([ 'telephone' => $phone, 'numero_rue' => $numero_rue, 'nom_rue' => $nom_rue, 'code_postal' => $code_postal, 'pays' => $country, 'ville' => $city]);
+            $stmt_customer->execute(['telephone' => $phone, 'numero_rue' => $numero_rue, 'nom_rue' => $nom_rue, 'code_postal' => $code_postal, 'pays' => $country, 'ville' => $city]);
 
             $idCustomer = $this->pdo->lastInsertId();
             // Requête pour insérer le nouvel utilisateur dans la table user
             $stmt_user = $this->pdo->prepare('INSERT INTO user (username, email, password, id_customer, nom_prenom) VALUES (:username, :email, :password, :idCustomer, :nomPrenom)');
-            $stmt_user->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, "idCustomer"=>$idCustomer, "nomPrenom"=>$nomPrenom]);
+            $stmt_user->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, "idCustomer" => $idCustomer, "nomPrenom" => $nomPrenom]);
             // $user_id = $this->pdo->lastInsertId();
 
 

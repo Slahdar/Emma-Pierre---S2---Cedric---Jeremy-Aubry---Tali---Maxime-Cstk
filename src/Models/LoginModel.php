@@ -17,7 +17,7 @@ class LoginModel
         $stmt = $this->pdo->prepare($query);
         $stmt->execute(['username' => $username]);
 
-        // Fetch the first row as an associative array
+
         $user = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         return $user ? $user : null;

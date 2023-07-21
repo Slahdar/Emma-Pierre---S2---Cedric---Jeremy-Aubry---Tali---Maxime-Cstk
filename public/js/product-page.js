@@ -12,7 +12,7 @@ btnAddCart.addEventListener("click", function () {
 
         const cartButton = document.getElementById('cart-btn');
 
-        // Add the styles using JavaScript
+
         cartButton.style.background = '#ff000082';
         cartButton.style.borderRadius = '5px';
         cartButton.style.padding = '5px';
@@ -21,17 +21,16 @@ btnAddCart.addEventListener("click", function () {
 
 
 
-        // Function to reset the styles to their initial values
+
         function resetStyles() {
           cartButton.style.background = '#ffff';
           cartButton.style.borderRadius = '0';
         }
 
-        // Add a click event listener to the div
+
         cartButton.addEventListener('click', function () {
 
 
-          // Use setTimeout to reset the styles after the transition is completed (adjust the delay based on your transition duration)
           setTimeout(resetStyles, 300);
         });
 

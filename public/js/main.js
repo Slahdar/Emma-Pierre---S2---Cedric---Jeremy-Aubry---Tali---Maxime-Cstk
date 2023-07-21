@@ -87,38 +87,38 @@ function deleteProduct(id) {
   loadProducts();
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  fetch('/api/orders') // Replace with your API endpoint URL
-  .then(response => response.json())
-  .then(data => {
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('/api/orders')
+    .then(response => response.json())
+    .then(data => {
       let orders = groupByOrderId(data);
       createOrderCards(orders);
-  });
+    });
 });
 
 function groupByOrderId(data) {
   let grouped = {};
 
   data.forEach(item => {
-      if (!grouped[item.order_id]) {
-          grouped[item.order_id] = {
-              username: item.username,
-              order_total: item.order_total,
-              nom_prenom: item.nom_prenom,
-              numero_rue: item.numero_rue,
-              nom_rue: item.nom_rue,
-              ville: item.ville,
-              code_postal: item.code_postal,
+    if (!grouped[item.order_id]) {
+      grouped[item.order_id] = {
+        username: item.username,
+        order_total: item.order_total,
+        nom_prenom: item.nom_prenom,
+        numero_rue: item.numero_rue,
+        nom_rue: item.nom_rue,
+        ville: item.ville,
+        code_postal: item.code_postal,
 
 
 
-              products: []
-          };
-      }
-      grouped[item.order_id].products.push({
-          product_name: item.product_name,
-          unit_price: item.unit_price
-      });
+        products: []
+      };
+    }
+    grouped[item.order_id].products.push({
+      product_name: item.product_name,
+      unit_price: item.unit_price
+    });
   });
 
   return grouped;
@@ -128,36 +128,36 @@ function createOrderCards(orders) {
   let container = document.getElementById('orders_container');
 
   for (let orderId in orders) {
-      let order = orders[orderId];
+    let order = orders[orderId];
     console.log(order);
-      let card = document.createElement('div');
-      card.className = 'orderCard';
+    let card = document.createElement('div');
+    card.className = 'orderCard';
 
-      let usernameEl = document.createElement('p');
-      usernameEl.innerText = 'Username : ' + order.username;
-      card.appendChild(usernameEl);
+    let usernameEl = document.createElement('p');
+    usernameEl.innerText = 'Username : ' + order.username;
+    card.appendChild(usernameEl);
 
-      let nomPrenom = document.createElement('p');
-      nomPrenom.innerText = 'Name : ' + order.nom_prenom;
-      card.appendChild(nomPrenom);
+    let nomPrenom = document.createElement('p');
+    nomPrenom.innerText = 'Name : ' + order.nom_prenom;
+    card.appendChild(nomPrenom);
 
-      let adresse = document.createElement('p');
-      adresse.innerText = 'Adresse : ' + order.numero_rue + ' ' + order.nom_rue + ' ' + order.code_postal + ' ' + order.ville;
-      card.appendChild(adresse);
+    let adresse = document.createElement('p');
+    adresse.innerText = 'Adresse : ' + order.numero_rue + ' ' + order.nom_rue + ' ' + order.code_postal + ' ' + order.ville;
+    card.appendChild(adresse);
 
-      let totalEl = document.createElement('p');
-      totalEl.innerText = 'Order Total: ' + order.order_total;
-      card.appendChild(totalEl);
+    let totalEl = document.createElement('p');
+    totalEl.innerText = 'Order Total: ' + order.order_total;
+    card.appendChild(totalEl);
 
-      let productList = document.createElement('ul');
-      order.products.forEach(product => {
-          let productEl = document.createElement('li');
-          productEl.innerText = product.product_name + ' - ' + product.unit_price;
-          productList.appendChild(productEl);
-      });
-      card.appendChild(productList);
+    let productList = document.createElement('ul');
+    order.products.forEach(product => {
+      let productEl = document.createElement('li');
+      productEl.innerText = product.product_name + ' - ' + product.unit_price;
+      productList.appendChild(productEl);
+    });
+    card.appendChild(productList);
 
-      container.appendChild(card);
+    container.appendChild(card);
   }
 }
 

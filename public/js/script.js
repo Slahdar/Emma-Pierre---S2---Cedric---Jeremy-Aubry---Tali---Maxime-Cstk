@@ -110,7 +110,7 @@ window.onload = refreshCart();
 
 function refreshCart() {
   console.log('executing refresh cart');
-  
+
   fetch("/api/cart", {
     method: "GET",
     headers: {
@@ -121,7 +121,7 @@ function refreshCart() {
     .then((data) => {
       const cartItems = document.getElementById("cart-items");
       const dataArray = Object.values(data);
-      
+
       let totalSum = 0; // Initialize total sum
 
       const fragment = document.createDocumentFragment();
@@ -142,9 +142,9 @@ function refreshCart() {
                 <p style="cursor:pointer;" onclick="removeItem(${element.product_id})">Supprimer</p>
             </div>
         </div>`;
-        
+
         fragment.appendChild(productCard);
-        
+
         // Calculate total sum for each item in the cart
         totalSum += parseFloat(element.price) * element.qty;
       });
@@ -154,8 +154,7 @@ function refreshCart() {
 
       // Update the total displayed on the page
       const totalElement = document.querySelector(".cart-total>p");
-      totalElement.innerHTML = totalSum.toFixed(2) + "€";  // toFixed(2) ensures 2 decimal places
-
+      totalElement.innerHTML = totalSum.toFixed(2) + "€";
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -175,7 +174,7 @@ function removeItem(id) {
     })
     .then(() => {
       refreshCart();
-      //alert("Product deleted successfully!");
+
     })
     .catch((error) => {
       console.error("There was an error:", error);
@@ -198,7 +197,7 @@ function emptyCart() {
       const total = document.querySelector(".cart-total>p");
 
       total.innerHTML = "0€";
-      //alert("Product deleted successfully!");
+
     })
     .catch((error) => {
       console.error("There was an error:", error);

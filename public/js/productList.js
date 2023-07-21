@@ -1,13 +1,12 @@
 let allProducts = [];
 
-// Fetch product data from the API once on page load
+
 fetch("/api/products")
   .then((response) => response.json())
   .then((products) => {
     allProducts = products;
     updateProductContainer(allProducts); // Display all products by default
 
-    // Attach event listeners to checkboxes after the initial load
     document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
       checkbox.addEventListener("change", handleFilterChange);
     });
@@ -62,7 +61,7 @@ function updateProductContainer(products) {
 
     const productImage = product.image
       ? `/img/${product.image}`
-      : "path_to_default_image.jpg"; // Replace with your default image path
+      : "/img/BJOUX1.jpg";
 
     productCard.innerHTML = `
             <img src="${productImage}" alt="${product.product_name}">
