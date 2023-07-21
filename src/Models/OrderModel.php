@@ -13,43 +13,43 @@ class OrderModel
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    public function doOrder($id,$cart)
+    public function doOrder($id, $cart)
     {
         try {
-           
-        
+
+
             // Calculate the total price for the order
             $total = 0;
             foreach ($cart as $item) {
                 $total += $item['price'] * $item['qty'];
             }
-        
+
             // Insert data into the `order` table
             $sqlOrder = 'INSERT INTO `order` (user_id, order_date, order_status, order_total) VALUES (?, CURDATE(), ?, ?)'; // Adjusted id_customer to user_id
             $stmtOrder = $this->pdo->prepare($sqlOrder);
             $stmtOrder->execute([$id, 'Pending', $total]);
-        
+
             // Get the last inserted order ID for reference in the order detail
-            $orderID = $this->pdo->lastInsertId(); 
-            
-        
+            $orderID = $this->pdo->lastInsertId();
+
+
             // Insert data into the `order_detail` table
             $sqlDetail = 'INSERT INTO `order_detail` (order_id, product_id, quantity, unit_price) VALUES (?, ?, ?, ?)';
             $stmtDetail = $this->pdo->prepare($sqlDetail);
-        
+
             foreach ($cart as $item) {
                 $stmtDetail->execute([$orderID, $item['product_id'], $item['qty'], $item['price']]);
             }
-        
+
             return true;  // Order processed successfully
 
         } catch (\PDOException $e) {
             // Log the PDO error for debugging
-            error_log('PDO Error in OrderModel: ' . $e->getMessage()); 
+            error_log('PDO Error in OrderModel: ' . $e->getMessage());
             return false;
         } catch (\Exception $e) {
             // Log any other exceptions for debugging
-            error_log('General Error in OrderModel: ' . $e->getMessage()); 
+            error_log('General Error in OrderModel: ' . $e->getMessage());
             return false;
         }
     }
