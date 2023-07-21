@@ -23,13 +23,35 @@ class RegisterModel
         return $count > 0;
     }
 
-    public function registerUser(string $username, string $email, string $password): void
+    public function registerUserAndCustomer(string $username, string $email, string $password, string $phone, string $numero_rue, string $nom_rue, string $code_postal, string $country, string $city): bool
     {
         // Hash du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Requête pour insérer le nouvel utilisateur dans la base de données
-        $stmt = $this->pdo->prepare('INSERT INTO user (username, email, password) VALUES (:username, :email, :password)');
-        $stmt->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword]);
+        // Start the transaction
+        $this->pdo->beginTransaction();
+
+        try {
+            // Requête pour insérer les informations du client dans la table customer
+            $stmt_customer = $this->pdo->prepare('INSERT INTO customer (telephone, numero_rue, nom_rue, code_postal, pays, ville) VALUES (:telephone, :numero_rue, :nom_rue, :code_postal, :pays, :ville)');
+            $stmt_customer->execute([ 'telephone' => $phone, 'numero_rue' => $numero_rue, 'nom_rue' => $nom_rue, 'code_postal' => $code_postal, 'pays' => $country, 'ville' => $city]);
+
+            $idCustomer = $this->pdo->lastInsertId();
+            // Requête pour insérer le nouvel utilisateur dans la table user
+            $stmt_user = $this->pdo->prepare('INSERT INTO user (username, email, password, id_customer) VALUES (:username, :email, :password, :idCustomer)');
+            $stmt_user->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, "idCustomer"=>$idCustomer]);
+            // $user_id = $this->pdo->lastInsertId();
+
+
+            // Commit the transaction if everything is successful
+            $this->pdo->commit();
+
+            return true; // Registration successful
+        } catch (Exception $e) {
+            // Rollback the transaction if there is an error
+            $this->pdo->rollback();
+
+            return false; // Registration failed
+        }
     }
 }

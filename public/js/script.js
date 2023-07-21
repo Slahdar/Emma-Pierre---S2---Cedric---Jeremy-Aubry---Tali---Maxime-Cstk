@@ -88,22 +88,22 @@ function panier() {
 }
 
 function product_list() {
-  window.location.href = "product_list.html";
+  window.location.href = "/productList";
 }
 function product_page(id) {
   window.location.href = `/product/${id}`;
 }
 
 function precieuse() {
-  window.location.href = "collection-precieuse.html";
+  window.location.href = "/collection-precieuse";
 }
 
 function impertinente() {
-  window.location.href = "collection-impertinente.html";
+  window.location.href = "/collection-impertinente";
 }
 
 function unique() {
-  window.location.href = "collection-unique.html";
+  window.location.href = "/collection-unique";
 }
 
 window.onload = refreshCart();

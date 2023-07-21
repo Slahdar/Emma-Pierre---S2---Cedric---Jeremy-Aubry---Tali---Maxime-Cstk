@@ -1,7 +1,14 @@
 {% include 'header.twig' %}
 
 {% block content %}
- <a href="/logout">Déconnexion</a>
+    <div id="page-container" class="my-5">
+        <section>
+        <p> Bonjour </p>
+            <a href="/logout">Déconnexion</a>
+        </section>
+    {# </div> #}
 {% endblock %}
 
+{% block footer %}
 {% include 'footer.twig' %}
+{% endblock %}

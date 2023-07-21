@@ -1,7 +1,8 @@
 {% include 'header.twig' %}
 <link rel="stylesheet" href="/css/product-list.css">
 
-
+{% block content %}
+<div id="page-container">
 <div id="product-wrapper">
     <div id="filter-wrapper">
         <div id="filters">
@@ -46,6 +47,7 @@
     </div>
 </div>
 
+{% endblock %}
 
 
 
