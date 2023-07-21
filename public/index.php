@@ -65,7 +65,9 @@ $serviceContainer
   ->set(App\Models\CollectionModel::class, new App\Models\CollectionModel($pdo))
   ->set(App\Models\LoginModel::class, new App\Models\LoginModel($pdo))
   ->set(App\Models\RegisterModel::class, new App\Models\RegisterModel($pdo))
-  ->set(App\Models\CartModel::class, new App\Models\CartModel($pdo));
+  ->set(App\Models\CartModel::class, new App\Models\CartModel($pdo))
+  ->set(App\Models\OrderModel::class, new App\Models\OrderModel($pdo));
+  
 // Appeler un routeur pour lui transférer la requête
 $router = new Router($serviceContainer, new ArgumentResolver());
 $router->registerRoutes();

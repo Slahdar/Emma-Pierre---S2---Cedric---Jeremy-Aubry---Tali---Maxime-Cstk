@@ -1,16 +1,38 @@
+#new-product-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+#new-product-form > *{
+    margin: 10px;
+}
+
+#products{
+    width:90vw;
+}
+
 #products-table {
-    width: 80vw;
+    width: 100%;
     margin-bottom: 20px;
 }
 
 #products-table td {
     text-align: center;
+    border: solid 1px black;
+    padding: 5px;
 }
 
-#new-product-form {
+.product-form {
 
     display: flex;
 
+}
+
+.product-form > * {
+    margin: 10px;
 }
 
 #new-product-form input {
@@ -39,8 +61,33 @@
 }
 
 #orders {
-
+    margin-top: 20px;
     border: solid 1px grey;
     border-radius: 15px;
     padding: 10px;
+    width: 90vw;
+}
+
+.orderCard {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.orderCard {
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+
+   
+}
+
+#orders_container {
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 16px; 
+    padding: 16px;
+    width: 100%;
 }

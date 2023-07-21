@@ -87,4 +87,63 @@ function deleteProduct(id) {
   loadProducts();
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('/api/orders') // Replace with your API endpoint URL
+  .then(response => response.json())
+  .then(data => {
+      let orders = groupByOrderId(data);
+      createOrderCards(orders);
+  });
+});
+
+function groupByOrderId(data) {
+  let grouped = {};
+
+  data.forEach(item => {
+      if (!grouped[item.order_id]) {
+          grouped[item.order_id] = {
+              username: item.username,
+              order_total: item.order_total,
+              products: []
+          };
+      }
+      grouped[item.order_id].products.push({
+          product_name: item.product_name,
+          unit_price: item.unit_price
+      });
+  });
+
+  return grouped;
+}
+
+function createOrderCards(orders) {
+  let container = document.getElementById('orders_container');
+
+  for (let orderId in orders) {
+      let order = orders[orderId];
+
+      let card = document.createElement('div');
+      card.className = 'orderCard';
+
+      let usernameEl = document.createElement('p');
+      usernameEl.innerText = 'Username: ' + order.username;
+      card.appendChild(usernameEl);
+
+      let totalEl = document.createElement('p');
+      totalEl.innerText = 'Order Total: ' + order.order_total;
+      card.appendChild(totalEl);
+
+      let productList = document.createElement('ul');
+      order.products.forEach(product => {
+          let productEl = document.createElement('li');
+          productEl.innerText = product.product_name + ' - ' + product.unit_price;
+          productList.appendChild(productEl);
+      });
+      card.appendChild(productList);
+
+      container.appendChild(card);
+  }
+}
+
+
 window.onload = loadProducts;

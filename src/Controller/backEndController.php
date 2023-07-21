@@ -25,6 +25,10 @@ class backEndController extends AbstractController
     #[Route("/back", name: "backEnd")]
     public function home(): string
     {
+        if (!isset($_SESSION['status']) || $_SESSION['status'] == 1) {
+            http_response_code(401);  
+            return 'ERROR 401 : Unauthorised';
+        }
 
         $categories = $this->CategoryModel->getAllCategories();
         $types = $this->gemTypeModel->getAllTypes();
