@@ -14,6 +14,8 @@ document
         alert("Product created successfully!");
         console.log(formData);
         loadProducts();
+        emptyForm();
+
       })
       .catch((error) => {
         alert("An error occurred.");
@@ -160,6 +162,16 @@ function createOrderCards(orders) {
     container.appendChild(card);
   }
 }
+
+ // Function to empty the form
+ function emptyForm() {
+  // Get the form element
+  const form = document.getElementById('new-product-form');
+  
+  // Reset the form to clear all the input fields, text areas, and select elements
+  form.reset();
+}
+
 
 
 window.onload = loadProducts;
