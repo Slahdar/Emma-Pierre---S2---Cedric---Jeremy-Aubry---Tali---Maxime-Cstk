@@ -20,7 +20,7 @@ function displayCart() {
                         <p class="h4 bleu">${product.price}€</p>
                     </div>
                     <div class="inner-cart-flex-row">
-                        <a class="h4 mob-d-none" role="button" style="color:black;">Modifier</a>
+                        <a class="h4 invisible mob-d-none" role="button" style="color:black;">Modifier</a>
                         <label class="h4 pc-d-none"> QTÉ <input type="text" value="${product.qty}" class="qte"></label>
                         <a class="h4" role="button" onclick="deleteItem(${product.product_id})" style="color:black;">Supprimer</a>
                     </div>
