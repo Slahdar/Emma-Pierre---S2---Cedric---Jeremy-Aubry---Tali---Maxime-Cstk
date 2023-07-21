@@ -50,6 +50,6 @@ class LoginController extends AbstractController
     {
         $this->loginModel->clearUserSession();
 
-        header('Location: /');
+        header('Location: /login');
     }
 }

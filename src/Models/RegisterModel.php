@@ -23,7 +23,7 @@ class RegisterModel
         return $count > 0;
     }
 
-    public function registerUserAndCustomer(string $username, string $email, string $password, string $phone, string $numero_rue, string $nom_rue, string $code_postal, string $country, string $city): bool
+    public function registerUserAndCustomer(string $username, string $nomPrenom, string $email, string $password, string $phone, string $numero_rue, string $nom_rue, string $code_postal, string $country, string $city): bool
     {
         // Hash du mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -38,8 +38,8 @@ class RegisterModel
 
             $idCustomer = $this->pdo->lastInsertId();
             // Requête pour insérer le nouvel utilisateur dans la table user
-            $stmt_user = $this->pdo->prepare('INSERT INTO user (username, email, password, id_customer) VALUES (:username, :email, :password, :idCustomer)');
-            $stmt_user->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, "idCustomer"=>$idCustomer]);
+            $stmt_user = $this->pdo->prepare('INSERT INTO user (username, email, password, id_customer, nom_prenom) VALUES (:username, :email, :password, :idCustomer, :nomPrenom)');
+            $stmt_user->execute(['username' => $username, 'email' => $email, 'password' => $hashedPassword, "idCustomer"=>$idCustomer, "nomPrenom"=>$nomPrenom]);
             // $user_id = $this->pdo->lastInsertId();
 
 

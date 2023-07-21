@@ -57,11 +57,12 @@ class OrderModel
     public function getAllOrders()
     {
 
-        $stmt = $this->pdo->prepare("SELECT od.detail_id, o.order_id, p.product_name, u.username, od.unit_price, o.order_total
+        $stmt = $this->pdo->prepare("SELECT od.detail_id, o.order_id, p.product_name, u.username, u.nom_prenom, od.unit_price, o.order_total, c.nom_rue, c.numero_rue, c.ville, c.code_postal
         FROM `order_detail` AS od
         JOIN `order` AS o ON od.order_id = o.order_id
         JOIN `product` AS p ON od.product_id = p.product_id
-        JOIN `user` AS u ON o.user_id = u.user_id");
+        JOIN `user` AS u ON o.user_id = u.user_id
+        LEFT JOIN `customer` AS c ON c.id_customer = u.id_customer");
         $stmt->execute();
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

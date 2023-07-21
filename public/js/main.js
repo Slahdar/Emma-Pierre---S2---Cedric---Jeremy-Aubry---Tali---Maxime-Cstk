@@ -104,6 +104,14 @@ function groupByOrderId(data) {
           grouped[item.order_id] = {
               username: item.username,
               order_total: item.order_total,
+              nom_prenom: item.nom_prenom,
+              numero_rue: item.numero_rue,
+              nom_rue: item.nom_rue,
+              ville: item.ville,
+              code_postal: item.code_postal,
+
+
+
               products: []
           };
       }
@@ -121,13 +129,21 @@ function createOrderCards(orders) {
 
   for (let orderId in orders) {
       let order = orders[orderId];
-
+    console.log(order);
       let card = document.createElement('div');
       card.className = 'orderCard';
 
       let usernameEl = document.createElement('p');
-      usernameEl.innerText = 'Username: ' + order.username;
+      usernameEl.innerText = 'Username : ' + order.username;
       card.appendChild(usernameEl);
+
+      let nomPrenom = document.createElement('p');
+      nomPrenom.innerText = 'Name : ' + order.nom_prenom;
+      card.appendChild(nomPrenom);
+
+      let adresse = document.createElement('p');
+      adresse.innerText = 'Adresse : ' + order.numero_rue + ' ' + order.nom_rue + ' ' + order.code_postal + ' ' + order.ville;
+      card.appendChild(adresse);
 
       let totalEl = document.createElement('p');
       totalEl.innerText = 'Order Total: ' + order.order_total;

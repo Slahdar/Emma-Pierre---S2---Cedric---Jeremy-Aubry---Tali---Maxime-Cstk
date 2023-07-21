@@ -60,6 +60,7 @@ public function registerProcess(): string
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $nomPrenom = $_POST['nomPrenom'];
     $id_customer = $_POST['id_customer'];
     // fields for customer information
     $numero_rue = $_POST['numero_rue'];
@@ -78,7 +79,7 @@ public function registerProcess(): string
     }
 
     // Enregistrer l'utilisateur et customer
-    $this->registerModel-> registerUserAndCustomer($username, $email, $password, $phone, $numero_rue, $nom_rue, $code_postal, $country, $city, $id_customer);
+    $this->registerModel-> registerUserAndCustomer($username, $nomPrenom, $email, $password, $phone, $numero_rue, $nom_rue, $code_postal, $country, $city, $id_customer);
 
    
     $user = $this->loginModel->getUserByUsername($username);
