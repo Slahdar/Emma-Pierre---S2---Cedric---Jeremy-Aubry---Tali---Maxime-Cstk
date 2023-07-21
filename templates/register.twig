@@ -1,7 +1,7 @@
 {% include 'header.twig' %}
 
 {% block content %}
- <div id="page-container">
+ <div id="page-container" style="text-align: center">
 		<h1>Inscription</h1>
 
 		<form method="POST" action="/register">
@@ -21,12 +21,7 @@
                 <label for="phone">Téléphone</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
-			<div>
-				<label for="password">Mot de passe</label>
-				<input type="password" id="password" name="password" required>
-			</div>
-
-
+			
 			<div>
 			    <label for="numero_rue">Numéro de rue</label>
     			<input type="text" id="numero_rue" name="numero_rue" required>
@@ -48,10 +43,18 @@
                 <label for="country">Pays</label>
                 <input type="text" id="country" name="country" required>
             </div>
-
+			<div>
+				<label for="password">Mot de passe</label>
+				<input type="password" id="password" name="password" required>
+			</div>
+			<div>
 			<button type="submit">S'inscrire</button>
-		</form>
+			</div>
+			<div>
 		<a href="/login">Déjà un compte ? Connectez-vous !</a>
+
+			</div>
+		</form>
 
 		{% if register_error is defined %}
 			<p class="alert alert-danger">{{ register_error }}</p>

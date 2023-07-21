@@ -1,7 +1,7 @@
 {% include 'header.twig' %}
 
 {% block content %}
- <div id="page-container">
+ <div id="page-container" style="text-align: center">
   <h1>Connexion</h1>
 
   <form method="POST" action="/login">
@@ -13,9 +13,13 @@
       <label for="password">Mot de passe</label>
       <input type="password" id="password" name="password" required>
     </div>
+    <div>
     <button type="submit">Se connecter</button>
-  </form>
+    </div>
+    <div>
   <a href="/register">Pas encore de compte ? Enregistrez-vous !</a>
+  </div>
+  </form>
 
 {% if login_error is defined %}
     <p class="alert alert-danger">{{ login_error }}</p>

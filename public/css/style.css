@@ -502,6 +502,10 @@ h2 {
   cursor: pointer;
 }
 
+form div{
+  padding: 0 0 15px;
+}
+
 @media screen and (max-width: 480px) {
   #contact,
   #devis {
