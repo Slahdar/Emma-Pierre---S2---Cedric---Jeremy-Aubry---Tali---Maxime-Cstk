@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 20 juil. 2023 à 22:41
+-- Généré le : mer. 02 août 2023 à 11:40
 -- Version du serveur : 8.0.31
--- Version de PHP : 8.2.0
+-- Version de PHP : 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `mvc_emmap`
+-- Base de données : `final_emma_pierre`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
 (1, 'collier'),
-(2, 'boucles d\'oreils'),
+(2, 'boucles d\'oreilles'),
 (3, 'bracelet');
 
 -- --------------------------------------------------------
@@ -94,7 +94,15 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `code_postal` varchar(20) DEFAULT NULL,
   `pays` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Déchargement des données de la table `customer`
+--
+
+INSERT INTO `customer` (`id_customer`, `telephone`, `numero_rue`, `nom_rue`, `ville`, `code_postal`, `pays`) VALUES
+(1, '01234567989', '12', 'Jules Ferry', 'Dijon', '21000', 'France'),
+(2, '0123456789', '15', 'Victor Hugo', 'Villeurbanne', '69100', 'France');
 
 -- --------------------------------------------------------
 
@@ -147,23 +155,20 @@ CREATE TABLE IF NOT EXISTS `order` (
   `order_total` decimal(10,0) NOT NULL,
   PRIMARY KEY (`order_id`),
   KEY `id_customer` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `order`
 --
 
 INSERT INTO `order` (`order_id`, `user_id`, `order_date`, `order_status`, `order_total`) VALUES
-(3, 1, NULL, 'Pending', '300'),
-(4, 1, NULL, 'Pending', '300'),
-(5, 1, '2023-07-20', 'Pending', '0'),
-(6, 1, '2023-07-20', 'Pending', '0'),
-(7, 1, '2023-07-20', 'Pending', '0'),
-(8, 1, '2023-07-20', 'Pending', '0'),
-(9, 1, '2023-07-20', 'Pending', '120'),
-(10, 1, '2023-07-20', 'Pending', '120'),
-(11, 1, '2023-07-20', 'Pending', '120'),
-(12, 1, '2023-07-21', 'Pending', '300');
+(14, 4, '2023-07-21', 'Pending', '240'),
+(15, 5, '2023-07-21', 'Pending', '660'),
+(16, 4, '2023-07-21', 'Pending', '160'),
+(17, 5, '2023-07-21', 'Pending', '380'),
+(18, 5, '2023-07-21', 'Pending', '120'),
+(19, NULL, '2023-07-21', 'Pending', '180'),
+(20, 5, '2023-07-21', 'Pending', '120');
 
 -- --------------------------------------------------------
 
@@ -181,16 +186,23 @@ CREATE TABLE IF NOT EXISTS `order_detail` (
   PRIMARY KEY (`detail_id`),
   KEY `order_id` (`order_id`),
   KEY `product_id` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `order_detail`
 --
 
 INSERT INTO `order_detail` (`detail_id`, `order_id`, `product_id`, `quantity`, `unit_price`) VALUES
-(1, 11, 1, 1, '120.00'),
-(2, 12, 1, 1, '120.00'),
-(3, 12, 2, 1, '180.00');
+(5, 14, 1, 2, '120.00'),
+(6, 15, 2, 3, '180.00'),
+(7, 15, 1, 1, '120.00'),
+(8, 16, 3, 2, '80.00'),
+(9, 17, 2, 1, '180.00'),
+(10, 17, 1, 1, '120.00'),
+(11, 17, 3, 1, '80.00'),
+(12, 18, 1, 1, '120.00'),
+(13, 19, 2, 1, '180.00'),
+(14, 20, 1, 1, '120.00');
 
 -- --------------------------------------------------------
 
@@ -216,15 +228,18 @@ CREATE TABLE IF NOT EXISTS `product` (
   KEY `color_id` (`color_id`),
   KEY `model_id` (`model_id`),
   KEY `gem_id` (`gem_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `product`
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `price`, `description`, `image`, `category_id`, `collection_id`, `color_id`, `model_id`, `gem_id`) VALUES
-(1, 'colier de Cornaline ', '120.00', 'Une pierre de couleur rouge-orangé à brun, associée à l\'énergie et à la vitalité. Elle est souvent utilisée pour favoriser la motivation et la créativité.', 'catPrecieuse.png', 1, 2, NULL, NULL, 4),
-(2, 'bracelet Améthyste ', '180.00', 'Une pierre violette souvent utilisée en bijouterie. Elle est associée à la sagesse et à la spiritualité.', 'bracelet.webp', 3, 1, NULL, NULL, 1);
+(1, 'collier de Cornaline ', '120.00', 'Une pierre de couleur rouge-orangé à brun, associée à l\'énergie et à la vitalité. Elle est souvent utilisée pour favoriser la motivation et la créativité.', 'catPrecieuse.png', 1, 2, NULL, NULL, 4),
+(2, 'bracelet Améthyste ', '180.00', 'Une pierre violette souvent utilisée en bijouterie. Elle est associée à la sagesse et à la spiritualité.', 'bracelet.webp', 3, 1, NULL, NULL, 1),
+(3, 'Boucles d\'oreilles Aigue Marine', '80.00', 'Une pierre de couleur bleu clair à bleu-vert, qui rappelle la mer. Elle est associée à la clarté mentale et à la communication.', 'earings_zoom_2.jpeg', 2, 3, NULL, NULL, 2),
+(4, 'Collier Citrine', '110.00', 'Une pierre jaune à orangée qui symbolise la joie et l\'abondance. Elle est souvent utilisée comme pierre de protection.', 'neck_necklace.jpeg', 1, 1, NULL, NULL, 3),
+(6, 'test', '22.00', 'test', 'BJOUX1.png', 1, 1, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -240,18 +255,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) DEFAULT NULL,
   `id_customer` int DEFAULT NULL,
   `statut` tinyint(1) NOT NULL DEFAULT '1',
+  `nom_prenom` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `id_customer` (`id_customer`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `id_customer`, `statut`) VALUES
-(1, 'user1', 'user1@user.fr', '$2y$10$z4iSoggnNjuCMa.A/OWqQ.Bh9V0fVfNitYKPRVA1GzN2a2ewNHemy', NULL, 1),
-(2, 'user2', 'user2@user1fr', '$2y$10$cYrOC9XoKN4ktwhPuuJ8V.EV/mk38ZsFxR9Ki1HPfb9UtH/wmqLq.', NULL, 1),
-(3, 'admin', 'admin@admin.fr', '$2y$10$kDHdBiC0c43y/kEch7l3O.XpaQQV5Yfm1uO34ZlpQ3wupJDJ6da5O', NULL, 0);
+INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `id_customer`, `statut`, `nom_prenom`) VALUES
+(3, 'admin', 'admin@admin.fr', '$2y$10$kDHdBiC0c43y/kEch7l3O.XpaQQV5Yfm1uO34ZlpQ3wupJDJ6da5O', NULL, 0, NULL),
+(4, 'gaet56', 'gaet@gmail.com', '$2y$10$ZaL1CxHI3EobQ2AduXoRF.7sCw5mQR6EyECxuuh8s6H77/tBcHI8G', 1, 1, 'Gaetan Cardier'),
+(5, 'john69', 'johndoe@gmail.com', '$2y$10$FHUQm9SK.e2CzYeNlTlf2ukNoup43VOitn9bfRTtLcHbgPRlf..i2', 2, 1, 'John Doe');
 
 --
 -- Contraintes pour les tables déchargées

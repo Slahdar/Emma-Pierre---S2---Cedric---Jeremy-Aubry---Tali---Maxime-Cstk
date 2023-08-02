@@ -1,27 +1,56 @@
-# Sciences-U - B3 IW - PHP MVC - 2023
+# EMMA PIERRE : E-commerce avec PHP (MVC)
 
-## Démarrage
+Bienvenue sur le projet "EMMA PIERRE". Il s'agit d'une application e-commerce réalisée à l'aide d'une architecture MVC simple en PHP.
 
-### Composer
+## Fonctionnalités Principales
 
-Pour récupérer les dépendances déclarées dans `composer.json` et générer l'autoloader PSR-4, exécuter la commande suivante :
+- **Catalogue produit** : Permet de consulter la liste des produits disponibles.
+- **Page produit** : Détails spécifiques de chaque produit.
+- **Panier** : Ajoutez, consultez et modifiez les articles de votre panier.
+- **Backend Admin** : Une interface d'administration pour :
+  - Consulter les produits du site.
+  - Ajouter de nouveaux produits.
+  - Supprimer des produits existants.
+  - Visualiser les commandes passées par les utilisateurs.
 
-```bash
-composer install
-```
+  > **Accès** : L'accès au backend est disponible via l'endpoint `/back` (ex: `localhost:5000/back`). Une authentification en tant qu'administrateur est nécessaire.
 
-### DB Configuration
+## Base de Données
 
-La configuration de la base de données doit être inscrite dans un fichier `.env.local`, sur le modèle du fichier `.env`.
+- Une base de données nommée `EmmaPierre.sql` est fournie à la racine du répertoire Git.
 
-### Démarrer l'application
+## API
 
-Commande :
+Une API a été mise en place pour rendre le site plus dynamique grâce aux appels AJAX. Voici la liste des endpoints disponibles :
 
-```bash
-composer start
-```
+- **Produits** :
+  - Ajouter un produit : `POST /api/products`
+  - Récupérer tous les produits : `GET /api/products`
+  - Récupérer un produit spécifique : `GET /api/products/{id}`
+  
+- **Panier** :
+  - Récupérer les articles du panier : `GET /api/cart`
+  - Récupérer le total du panier : `GET /api/cart/total`
+  - Vider le panier : `GET /api/cart/deleteall`
+  - Ajouter un article au panier : `POST /api/addCart/{id}/{qty}`
+  - Supprimer un article du panier : `POST /api/cart/delete/{id}`
+  - Passer une commande : `POST /api/order`
+  
+- **Commandes** :
+  - Récupérer toutes les commandes : `GET /api/orders`
 
-## Cours
+> **Note** : Certains Endpoints sont réservé aux administrateurs, pour un détail précis sur la logique de chaque endpoint, veuillez vous référer au code source de l'API. (ApiController.php)
 
-Le cours complet se trouve à [cette adresse](https://ld-web.github.io/su-2023-php-mvc-course/).
+## Identifiants de Test
+
+Voici quelques comptes pour tester le site :
+
+- **Utilisateurs** :
+  - Pseudo : `john69` / Password : `azerty`
+  - Pseudo : `gaet21` / Password : `azerty`
+
+- **Administrateur** :
+  - Pseudo : `admin` / Password : `admin`
+
+---
+
